@@ -73,6 +73,7 @@ namespace asst
 
     private:
         cv::Mat get_resized_image_cache() const;
+        cv::Mat get_WSAcrop_image(cv::Mat image) const;
 
         void clear_info() noexcept;
         void callback(AsstMsg msg, const json::value& details);

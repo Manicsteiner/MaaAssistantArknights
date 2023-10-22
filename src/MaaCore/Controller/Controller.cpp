@@ -79,9 +79,66 @@ cv::Mat asst::Controller::get_resized_image_cache() const
         Log.error("image is empty");
         return { d_size, CV_8UC3 };
     }
+    //add WSAcrop
     cv::Mat resized_mat;
-    cv::resize(m_cache_image, resized_mat, d_size, 0.0, 0.0, cv::INTER_AREA);
+    cv::resize(get_WSAcrop_image(m_cache_image), resized_mat, d_size, 0.0, 0.0, cv::INTER_AREA);
     return resized_mat;
+}
+
+//added code
+cv::Mat asst::Controller::get_WSAcrop_image(cv::Mat image) const
+{
+    // Convert the input image to grayscale
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+
+    // Threshold the image to separate the black background and non-black regions
+    cv::Mat thresh;
+    cv::threshold(gray, thresh, 1, 255, cv::THRESH_BINARY);
+
+    // Find contours in the thresholded image
+    std::vector<std::vector<cv::Point>> contours;
+    cv::findContours(thresh, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+
+    // Find the contour with the largest area
+    double maxArea = 0;
+    std::vector<cv::Point> maxContour;
+    for (int i = 0; i < contours.size(); i++) {
+        double area = cv::contourArea(contours[i]);
+        if (area > maxArea) {
+            maxArea = area;
+            maxContour = contours[i];
+        }
+    }
+
+    // Find the bounding box of the largest contour
+    cv::Rect bbox = cv::boundingRect(maxContour);
+
+    // Calculate the aspect ratio of the bounding box
+    double aspectRatio = (double)bbox.width / bbox.height;
+
+    // If the aspect ratio is not close enough to 16:9, adjust the width or height
+    if (aspectRatio < 16.0 / 9) {
+        int newWidth = bbox.height * 16 / 9;
+        bbox.x -= (newWidth - bbox.width) / 2;
+        bbox.width = newWidth;
+    }
+    else if (aspectRatio > 16.0 / 9) {
+        int newHeight = bbox.width * 9 / 16;
+        bbox.y -= (newHeight - bbox.height) / 2;
+        bbox.height = newHeight;
+    }
+
+    // Make sure the bounding box is within the image boundaries
+    bbox.x = std::max(bbox.x, 0);
+    bbox.y = std::max(bbox.y, 0);
+    bbox.width = std::min(bbox.width, image.cols - bbox.x);
+    bbox.height = std::min(bbox.height, image.rows - bbox.y);
+
+    // Crop the image using the bounding box
+    cv::Mat cropped = image(bbox);
+
+    return cropped;
 }
 
 bool asst::Controller::start_game(const std::string& client_type)
