@@ -302,6 +302,8 @@ namespace MaaWpfGui.Main
             AsstSetInstanceOption(InstanceOptionKey.TouchMode, Instances.SettingsViewModel.TouchMode);
             AsstSetInstanceOption(InstanceOptionKey.DeploymentWithPause, Instances.SettingsViewModel.DeploymentWithPause ? "1" : "0");
             AsstSetInstanceOption(InstanceOptionKey.AdbLiteEnabled, Instances.SettingsViewModel.AdbLiteEnabled ? "1" : "0");
+            AsstSetInstanceOption(InstanceOptionKey.GoldenBorder, Instances.SettingsViewModel.GoldenBorder ? "1" : "0");
+            AsstSetInstanceOption(InstanceOptionKey.ResizeWindow, Instances.SettingsViewModel.ResizeWindow ? "1" : "0");
 
             // TODO: 之后把这个 OnUIThread 拆出来
             // ReSharper disable once AsyncVoidLambda
@@ -382,6 +384,7 @@ namespace MaaWpfGui.Main
             switch (msg)
             {
                 case AsstMsg.InternalError:
+                    ProcInternalError(details);
                     break;
 
                 case AsstMsg.InitFailed:
@@ -425,6 +428,22 @@ namespace MaaWpfGui.Main
 
         private string _connectedAdb;
         private string _connectedAddress;
+
+        private void ProcInternalError(JObject details)
+        {
+            var what = details["what"].ToString();
+            switch (what)
+            {
+                case "NotSupported":
+                    Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("FeatureNotSupported"), UiLogColor.Error);
+                    Instances.TaskQueueViewModel.SetNotSupported();
+                    break;
+                case "DeviceFailed":
+                    Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("CreateDeviceFailed"), UiLogColor.Error);
+                    Instances.TaskQueueViewModel.SetNotSupported();
+                    break;
+            }
+        }
 
         private void ProcConnectInfo(JObject details)
         {
@@ -1431,7 +1450,7 @@ namespace MaaWpfGui.Main
         /// <returns>是否成功。</returns>
         public bool AsstConnect(ref string error)
         {
-            if (Instances.SettingsViewModel.AutoDetectConnection)
+            if (Instances.SettingsViewModel.AutoDetectConnection && !Instances.SettingsViewModel.IsWSATouchMode())
             {
                 string bsHvAddress = Instances.SettingsViewModel.TryToSetBlueStacksHyperVAddress();
 
@@ -2234,5 +2253,15 @@ namespace MaaWpfGui.Main
         /// Indicates whether the ADB server process should be killed when the instance is exited.
         /// </summary>
         KillAdbOnExit = 5,
+
+        /// <summary>
+        /// Indicates whether to give WSA window a golden border.
+        /// </summary>
+        GoldenBorder = 6,
+
+        /// <summary>
+        /// Indicates whether to resize WSA window to 1280x720.
+        /// </summary>
+        ResizeWindow = 7,
     }
 }

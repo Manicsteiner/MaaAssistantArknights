@@ -27,6 +27,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using HandyControl.Controls;
 using HandyControl.Data;
 using MaaWpfGui.Configuration;
@@ -508,6 +509,7 @@ namespace MaaWpfGui.ViewModels.UI
                 new CombinedData { Display = LocalizationHelper.GetString("MiniTouchMode"), Value = "minitouch" },
                 new CombinedData { Display = LocalizationHelper.GetString("MaaTouchMode"), Value = "maatouch" },
                 new CombinedData { Display = LocalizationHelper.GetString("AdbTouchMode"), Value = "adb" },
+                new CombinedData { Display = LocalizationHelper.GetString("WSATouchMode"), Value = "wsa" },
             };
 
             _dormThresholdLabel = LocalizationHelper.GetString("DormThreshold") + ": " + _dormThreshold + "%";
@@ -2850,6 +2852,32 @@ namespace MaaWpfGui.ViewModels.UI
             }
         }
 
+        private bool _resizeWindow = bool.Parse(ConfigurationHelper.GetValue(ConfigurationKeys.ResizeWindow, false.ToString()));
+
+        public bool ResizeWindow
+        {
+            get => _resizeWindow;
+            set
+            {
+                SetAndNotify(ref _resizeWindow, value);
+                ConfigurationHelper.SetValue(ConfigurationKeys.ResizeWindow, value.ToString());
+                UpdateInstanceSettings();
+            }
+        }
+
+        private bool _goldenBorder = bool.Parse(ConfigurationHelper.GetValue(ConfigurationKeys.GoldenBorder, false.ToString()));
+
+        public bool GoldenBorder
+        {
+            get => _goldenBorder;
+            set
+            {
+                SetAndNotify(ref _goldenBorder, value);
+                ConfigurationHelper.SetValue(ConfigurationKeys.GoldenBorder, value.ToString());
+                UpdateInstanceSettings();
+            }
+        }
+
         /// <summary>
         /// Gets the default addresses.
         /// </summary>
@@ -3045,6 +3073,10 @@ namespace MaaWpfGui.ViewModels.UI
         {
             return TouchMode == "adb";
         }
+        public bool IsWSATouchMode()
+        {
+            return TouchMode == "wsa";
+        }
 
         private string _touchMode = ConfigurationHelper.GetValue(ConfigurationKeys.TouchMode, "minitouch");
 
@@ -3065,6 +3097,8 @@ namespace MaaWpfGui.ViewModels.UI
             Instances.AsstProxy.AsstSetInstanceOption(InstanceOptionKey.DeploymentWithPause, DeploymentWithPause ? "1" : "0");
             Instances.AsstProxy.AsstSetInstanceOption(InstanceOptionKey.AdbLiteEnabled, AdbLiteEnabled ? "1" : "0");
             Instances.AsstProxy.AsstSetInstanceOption(InstanceOptionKey.KillAdbOnExit, KillAdbOnExit ? "1" : "0");
+            Instances.AsstProxy.AsstSetInstanceOption(InstanceOptionKey.GoldenBorder, GoldenBorder ? "1" : "0");
+            Instances.AsstProxy.AsstSetInstanceOption(InstanceOptionKey.ResizeWindow, ResizeWindow ? "1" : "0");
         }
 
         private const string GoogleAdbDownloadUrl = "https://dl.google.com/android/repository/platform-tools-latest-windows.zip";

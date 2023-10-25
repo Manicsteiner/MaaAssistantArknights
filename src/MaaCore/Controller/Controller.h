@@ -44,6 +44,8 @@ namespace asst
         void set_swipe_with_pause(bool enable) noexcept;
         void set_adb_lite_enabled(bool enable) noexcept;
         void set_kill_adb_on_exit(bool enable) noexcept;
+        void set_golden_border(bool enable) noexcept;
+        void set_resize_window(bool enable) noexcept;
 
         const std::string& get_uuid() const;
         cv::Mat get_image(bool raw = false);
@@ -98,6 +100,8 @@ namespace asst
 
         bool m_swipe_with_pause = false;
         bool m_kill_adb_on_exit = false;
+        bool m_resize_window = false;
+        bool m_golden_border = false;
 
         mutable std::shared_mutex m_image_mutex;
         cv::Mat m_cache_image;

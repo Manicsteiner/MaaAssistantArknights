@@ -56,6 +56,8 @@ namespace MaaWpfGui.Constants
         public const string KillAdbOnExit = "Connect.KillAdbOnExit";
         public const string TouchMode = "Connect.TouchMode";
         public const string AdbReplaced = "Connect.AdbReplaced";
+        public const string ResizeWindow = "Connect.ResizeWindow";
+        public const string GoldenBorder = "Connect.GoldenBorder";
 
         public const string ClientType = "Start.ClientType";
         public const string AccountName = "Start.AccountName";
