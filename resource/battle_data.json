@@ -962,9 +962,9 @@
         },
         "char_154_morgan": {
             "name": "摩根",
-            "name_en": "摩根",
-            "name_jp": "摩根",
-            "name_kr": "摩根",
+            "name_en": "Morgan",
+            "name_jp": "モーガン",
+            "name_kr": "모건",
             "name_tw": "摩根",
             "position": "MELEE",
             "profession": "WARRIOR",
@@ -1852,6 +1852,21 @@
                 "1-1"
             ],
             "rarity": 5
+        },
+        "char_245_cello": {
+            "name": "塑心",
+            "name_en": "塑心",
+            "name_jp": "塑心",
+            "name_kr": "塑心",
+            "name_tw": "塑心",
+            "position": "RANGED",
+            "profession": "SUPPORT",
+            "rangeId": [
+                "y-2",
+                "y-2",
+                "y-2"
+            ],
+            "rarity": 6
         },
         "char_248_mgllan": {
             "name": "麦哲伦",
@@ -3097,6 +3112,21 @@
             ],
             "rarity": 6
         },
+        "char_4011_lessng": {
+            "name": "止颂",
+            "name_en": "止颂",
+            "name_jp": "止颂",
+            "name_kr": "止颂",
+            "name_tw": "止颂",
+            "position": "MELEE",
+            "profession": "WARRIOR",
+            "rangeId": [
+                "1-1",
+                "1-1",
+                "1-1"
+            ],
+            "rarity": 6
+        },
         "char_4013_kjera": {
             "name": "耶拉",
             "name_en": "Kjera",
@@ -3665,9 +3695,9 @@
         },
         "char_4087_ines": {
             "name": "伊内丝",
-            "name_en": "伊内丝",
-            "name_jp": "伊内丝",
-            "name_kr": "伊内丝",
+            "name_en": "Ines",
+            "name_jp": "イネス",
+            "name_kr": "이네스",
             "name_tw": "伊内丝",
             "position": "MELEE",
             "profession": "PIONEER",
@@ -3722,6 +3752,36 @@
                 "0-1"
             ],
             "rarity": 1
+        },
+        "char_4098_vvana": {
+            "name": "薇薇安娜",
+            "name_en": "薇薇安娜",
+            "name_jp": "薇薇安娜",
+            "name_kr": "薇薇安娜",
+            "name_tw": "薇薇安娜",
+            "position": "MELEE",
+            "profession": "WARRIOR",
+            "rangeId": [
+                "1-1",
+                "1-1",
+                "1-1"
+            ],
+            "rarity": 6
+        },
+        "char_4100_caper": {
+            "name": "跃跃",
+            "name_en": "跃跃",
+            "name_jp": "跃跃",
+            "name_kr": "跃跃",
+            "name_tw": "跃跃",
+            "position": "RANGED",
+            "profession": "SNIPER",
+            "rangeId": [
+                "3-3",
+                "y-7",
+                "y-7"
+            ],
+            "rarity": 4
         },
         "char_4102_threye": {
             "name": "凛视",
@@ -3797,6 +3857,21 @@
                 "1-1"
             ],
             "rarity": 4
+        },
+        "char_4109_baslin": {
+            "name": "深律",
+            "name_en": "深律",
+            "name_jp": "深律",
+            "name_kr": "深律",
+            "name_tw": "深律",
+            "position": "MELEE",
+            "profession": "TANK",
+            "rangeId": [
+                "0-1",
+                "0-1",
+                "0-1"
+            ],
+            "rarity": 5
         },
         "char_4110_delphn": {
             "name": "戴菲恩",
@@ -4160,9 +4235,9 @@
         },
         "char_464_cement": {
             "name": "洋灰",
-            "name_en": "洋灰",
-            "name_jp": "洋灰",
-            "name_kr": "洋灰",
+            "name_en": "Cement",
+            "name_jp": "セメント",
+            "name_kr": "시멘트",
             "name_tw": "洋灰",
             "position": "MELEE",
             "profession": "TANK",
@@ -4385,9 +4460,9 @@
         },
         "char_491_humus": {
             "name": "休谟斯",
-            "name_en": "休谟斯",
-            "name_jp": "休谟斯",
-            "name_kr": "休谟斯",
+            "name_en": "Humus",
+            "name_jp": "ヒューマス",
+            "name_kr": "휴머스",
             "name_tw": "休谟斯",
             "position": "MELEE",
             "profession": "WARRIOR",
@@ -4485,6 +4560,21 @@
                 "3-1",
                 "3-3",
                 "3-3"
+            ],
+            "rarity": 5
+        },
+        "char_499_kaitou": {
+            "name": "折光",
+            "name_en": "折光",
+            "name_jp": "折光",
+            "name_kr": "折光",
+            "name_tw": "折光",
+            "position": "RANGED",
+            "profession": "CASTER",
+            "rangeId": [
+                "3-6",
+                "3-1",
+                "3-1"
             ],
             "rarity": 5
         },
@@ -6367,7 +6457,7 @@
             "name": "R-31重型动力装甲",
             "name_en": "R-31 Heavy Power Armor",
             "name_jp": "R-31大型パワードスーツ",
-            "name_kr": "R-31 중형 동력 기갑",
+            "name_kr": "R-31 중형 기동 장갑",
             "name_tw": "R-31重型動力裝甲",
             "position": "NONE",
             "profession": "TRAP",
@@ -6382,7 +6472,7 @@
             "name": "R-31a重型动力装甲",
             "name_en": "R-31a Heavy Power Armor",
             "name_jp": "R-31a大型パワードスーツ",
-            "name_kr": "R-31a 중형 동력 기갑",
+            "name_kr": "R-31a 중형 기동 장갑",
             "name_tw": "R-31a重型動力裝甲",
             "position": "NONE",
             "profession": "TRAP",
@@ -6397,7 +6487,7 @@
             "name": "R-11突击动力装甲",
             "name_en": "R-11 Assault Power Armor",
             "name_jp": "R-11突撃型パワードスーツ",
-            "name_kr": "R-11 돌격 동력 기갑",
+            "name_kr": "R-11 돌격 기동 장갑",
             "name_tw": "R-11突擊動力裝甲",
             "position": "NONE",
             "profession": "TRAP",
@@ -6412,7 +6502,7 @@
             "name": "R-11a突击动力装甲",
             "name_en": "R-11a Assault Power Armor",
             "name_jp": "R-11a突撃型パワードスーツ",
-            "name_kr": "R-11a 돌격 동력 기갑",
+            "name_kr": "R-11a 돌격 기동 장갑",
             "name_tw": "R-11a突擊動力裝甲",
             "position": "NONE",
             "profession": "TRAP",
@@ -6905,9 +6995,9 @@
         },
         "trap_111_wdfarm": {
             "name": "街头应急储备",
-            "name_en": "街头应急储备",
-            "name_jp": "街头应急储备",
-            "name_kr": "街头应急储备",
+            "name_en": "Roadside Emergency Reserves",
+            "name_jp": "街の緊急用備蓄",
+            "name_kr": "길거리 보급품",
             "name_tw": "街头应急储备",
             "position": "NONE",
             "profession": "TRAP",
@@ -7239,6 +7329,51 @@
             "name_jp": "勘察用自走车",
             "name_kr": "勘察用自走车",
             "name_tw": "勘察用自走车",
+            "position": "NONE",
+            "profession": "TRAP",
+            "rangeId": [
+                "0-1",
+                "0-1",
+                "0-1"
+            ],
+            "rarity": 1
+        },
+        "trap_134_condtr": {
+            "name": "调谐节点",
+            "name_en": "调谐节点",
+            "name_jp": "调谐节点",
+            "name_kr": "调谐节点",
+            "name_tw": "调谐节点",
+            "position": "NONE",
+            "profession": "TRAP",
+            "rangeId": [
+                "0-1",
+                "0-1",
+                "0-1"
+            ],
+            "rarity": 1
+        },
+        "trap_135_portlent": {
+            "name": "湮灭之相",
+            "name_en": "湮灭之相",
+            "name_jp": "湮灭之相",
+            "name_kr": "湮灭之相",
+            "name_tw": "湮灭之相",
+            "position": "NONE",
+            "profession": "TRAP",
+            "rangeId": [
+                "0-1",
+                "0-1",
+                "0-1"
+            ],
+            "rarity": 1
+        },
+        "trap_136_portlexi": {
+            "name": "创生之相",
+            "name_en": "创生之相",
+            "name_jp": "创生之相",
+            "name_kr": "创生之相",
+            "name_tw": "创生之相",
             "position": "NONE",
             "profession": "TRAP",
             "rangeId": [
