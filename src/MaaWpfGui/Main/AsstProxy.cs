@@ -605,7 +605,7 @@ namespace MaaWpfGui.Main
 
                     if (taskChain == "Fight" && SanityReport.HasSanityReport)
                     {
-                        var sanityLog = "\n" + LocalizationHelper.GetString("CurrentSanity") + $" {SanityReport.Sanity[0]}/{SanityReport.Sanity[1]}";
+                        var sanityLog = "\n" + string.Format(LocalizationHelper.GetString("CurrentSanity"), SanityReport.Sanity[0], SanityReport.Sanity[1]);
                         Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("CompleteTask") + taskChain + sanityLog);
                     }
                     else
@@ -869,7 +869,7 @@ namespace MaaWpfGui.Main
                                     missionStartLogBuilder.AppendFormat(LocalizationHelper.GetString("StoneUsedTimes"), StoneUsedTimes);
                                 }
 
-                                Instances.TaskQueueViewModel.AddLog(missionStartLogBuilder.ToString().TrimEnd('\n').TrimEnd(' '), UiLogColor.Info);
+                                Instances.TaskQueueViewModel.AddLog(missionStartLogBuilder.ToString().TrimEnd(), UiLogColor.Info);
                                 break;
 
                             case "StoneConfirm":
@@ -1540,17 +1540,24 @@ namespace MaaWpfGui.Main
             // 尝试默认的备选端口
             if (!ret && Instances.SettingsViewModel.AutoDetectConnection)
             {
-                foreach (var address in Instances.SettingsViewModel.DefaultAddress[Instances.SettingsViewModel.ConnectConfig]
-                             .TakeWhile(address => !_runningState.GetIdle()))
+                if (Instances.SettingsViewModel.DefaultAddress.TryGetValue(Instances.SettingsViewModel.ConnectConfig, out var value))
                 {
-                    ret = AsstConnect(_handle, Instances.SettingsViewModel.AdbPath, address, Instances.SettingsViewModel.ConnectConfig);
-                    if (!ret)
+                    foreach (var address in value
+                                 .TakeWhile(_ => !_runningState.GetIdle()))
                     {
-                        continue;
-                    }
+                        ret = AsstConnect(_handle, Instances.SettingsViewModel.AdbPath, address, Instances.SettingsViewModel.ConnectConfig);
+                        if (!ret)
+                        {
+                            continue;
+                        }
 
-                    Instances.SettingsViewModel.ConnectAddress = address;
-                    break;
+                        Instances.SettingsViewModel.ConnectAddress = address;
+                        break;
+                    }
+                }
+                else
+                {
+                    Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("AutoDetectConnectionNotSupported"), UiLogColor.Error);
                 }
             }
 

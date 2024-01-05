@@ -155,6 +155,7 @@
     <system:String x:Key="AdbException">ADB検出エラー\nこのソフトウェアを開くには管理者権限を使用するか\n手動で接続を設定してください</system:String>
     <system:String x:Key="EmulatorNotFound">エミュレータが検出されない\n管理者権限でこのアプリを開くか\n手動で接続設定を行ってください</system:String>
     <system:String x:Key="EmulatorTooMany">複数のシミュレータが検出されたため\n不要なエミュレータを閉じるか\n手動で接続設定を行ってください</system:String>
+    <system:String x:Key="EmulatorStartFailed">エミュレータの起動に失敗しました\n管理者権限でこのソフトウェアを開いていただくか\n手動でエミュレータを起動してください。</system:String>
     <system:String x:Key="SwitchLanguage">言語を切り替える</system:String>
     <system:String x:Key="Language">言語</system:String>
     <system:String x:Key="LanguageChangedTip">言語設定が変更されました、今すぐMAAを再起動して言語設定を適用しますか？</system:String>
@@ -287,6 +288,7 @@
 の両方がサポートされています。レベルの最後に「Normal/Hard」を入力することで、標準から強襲/厄難に難易度を切り替えることができます</system:String>
     <!--ワンタイム代理SS一般パスとして「SSReopen-XX」を入力できます</system:String>-->
     <system:String x:Key="AutoDetectConnection">接続自動認識</system:String>
+    <system:String x:Key="AutoDetectConnectionNotSupported">この接続構成では自動接続検出はサポートされていません。手動でポート番号を入力してみてください</system:String>
     <system:String x:Key="AutoDetectConnectionTip">このチェックボックスは、検出が完了するたびに自動的にチェックが外れますが、再検出が必要な場合は再度チェックを入れることができます</system:String>
     <system:String x:Key="AlwaysAutoDetectConnection">毎回再検出する</system:String>
     <system:String x:Key="AccountSwitch">アカウントの切り替え</system:String>

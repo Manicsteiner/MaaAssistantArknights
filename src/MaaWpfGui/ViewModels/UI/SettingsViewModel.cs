@@ -1081,13 +1081,31 @@ namespace MaaWpfGui.ViewModels.UI
                 _logger.Information("Start emulator error, try to start using the default: \n" +
                     "EmulatorPath: " + EmulatorPath + "\n" +
                     "EmulatorAddCommand: " + EmulatorAddCommand);
-                if (EmulatorAddCommand.Length != 0)
+                try
                 {
-                    Process.Start(EmulatorPath);
+                    if (EmulatorAddCommand.Length != 0)
+                    {
+                        Process.Start(EmulatorPath);
+                    }
+                    else
+                    {
+                        Process.Start(EmulatorPath, EmulatorAddCommand);
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    Process.Start(EmulatorPath, EmulatorAddCommand);
+                    if (e is Win32Exception win32Exception && win32Exception.NativeErrorCode == 740)
+                    {
+                        Execute.OnUIThread(() => Instances.TaskQueueViewModel.AddLog(
+                            LocalizationHelper.GetString("EmulatorStartFailed"), UiLogColor.Warning));
+
+                        _logger.Warning("Insufficient permissions to start the emulator:\n" +
+                            "EmulatorPath: " + EmulatorPath + "\n");
+                    }
+                    else
+                    {
+                        _logger.Warning("Emulator start failed with error: " + e.Message);
+                    }
                 }
             }
 
@@ -3094,15 +3112,14 @@ namespace MaaWpfGui.ViewModels.UI
                 return false;
             }
 
-            if (emulators.Count == 0)
+            switch (emulators.Count)
             {
-                error = LocalizationHelper.GetString("EmulatorNotFound");
-                return false;
-            }
-            else if (emulators.Count > 1)
-            {
-                error = LocalizationHelper.GetString("EmulatorTooMany");
-                return false;
+                case 0:
+                    error = LocalizationHelper.GetString("EmulatorNotFound");
+                    return false;
+                case > 1:
+                    error = LocalizationHelper.GetString("EmulatorTooMany");
+                    break;
             }
 
             ConnectConfig = emulators.First();
@@ -3115,15 +3132,19 @@ namespace MaaWpfGui.ViewModels.UI
 
             var addresses = adapter.GetAdbAddresses(AdbPath);
 
-            if (addresses.Count == 1)
+            switch (addresses.Count)
             {
-                ConnectAddress = addresses.First();
-            }
-            else if (addresses.Count > 1)
-            {
-                foreach (var address in addresses.Where(address => address != "emulator-5554"))
+                case 1:
+                    ConnectAddress = addresses.First();
+                    break;
+                case > 1:
                 {
-                    ConnectAddress = address;
+                    foreach (var address in addresses.Where(address => address != "emulator-5554"))
+                    {
+                        ConnectAddress = address;
+                        break;
+                    }
+
                     break;
                 }
             }
