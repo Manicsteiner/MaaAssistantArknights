@@ -108,6 +108,7 @@
     <system:String x:Key="StartingCoreChar">시작 오퍼레이터 (1명)</system:String>
     <system:String x:Key="StartingCoreCharTip">단일 오퍼레이터의 중국어 이름만 지원하며, 입력하지 않으면 기본값이 선택됩니다.</system:String>
     <system:String x:Key="RoguelikeStartWithEliteTwo">시초 에 간부 가 직진 하다</system:String>
+    <system:String x:Key="RoguelikeOnlyStartWithEliteTwo">오로지 시초 오퍼레이터의 직진만을 요구하고 전투를 진행하지 않음</system:String>
     <system:String x:Key="RoguelikeUseSupportUnit">시작 오퍼레이터로 지원 유닛 사용</system:String>
     <system:String x:Key="RoguelikeUseNonFriendSupport">친구가 아니어도 지원 유닛 사용</system:String>
     <system:String x:Key="RoguelikeDelayAbortUntilCombatComplete">전투 클리어 후 정지</system:String>
@@ -278,7 +279,7 @@ OF-1을 해금하지 않았다면 선택하지 말아 주세요.</system:String>
     <system:String x:Key="DarkModeSetColorsTip">변경 사항을 적용하려면 즉시 다시 시작하시겠습니까?</system:String>
     <system:String x:Key="UseAlternateStage">대체 스테이지 사용</system:String>
     <system:String x:Key="UseRemainingSanityStage">남은 이성 활용</system:String>
-    <system:String x:Key="UseRemainingSanityStageTip">주요 작업을 완료한 후 지정된 스테이지를 브러시하고, 자동으로 정신 상태로 되돌아가지 않습니다</system:String>
+    <system:String x:Key="UseRemainingSanityStageTip">주요 작업을 완료한 후 지정된 스테이지를 브러시하고, 이성 물약이나 돌을 사용하지 않습니다.</system:String>
     <system:String x:Key="UseExpiringMedicine">48시간 미만 내 소멸하는 회복제 전부 사용</system:String>
     <system:String x:Key="HideUnavailableStage">미개방 스테이지 숨기기</system:String>
     <system:String x:Key="CustomInfrastPlanShowInFightSettings">기반시설 계획 표시</system:String>
