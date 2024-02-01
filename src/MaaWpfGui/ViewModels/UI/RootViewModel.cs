@@ -28,7 +28,6 @@ namespace MaaWpfGui.ViewModels.UI
         /// <inheritdoc/>
         protected override void OnViewLoaded()
         {
-            CheckAndUpdateNow();
             InitViewModels();
             InitProxy();
         }
@@ -47,12 +46,6 @@ namespace MaaWpfGui.ViewModels.UI
 
             Instances.SettingsViewModel.UpdateWindowTitle(); // 在标题栏上显示模拟器和IP端口 必须在 Items.Add(settings)之后执行。
             ActiveItem = Instances.TaskQueueViewModel;
-        }
-
-        // ReSharper disable once UnusedMethodReturnValue.Local
-        private static bool CheckAndUpdateNow()
-        {
-            return Instances.VersionUpdateViewModel.CheckAndUpdateNow();
         }
 
         private string _windowTitle = "MAA";
