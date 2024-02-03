@@ -69,16 +69,6 @@ jobs:
             echo prerelease=true | tee -a $GITHUB_OUTPUT
           fi
 
-      - name: Generate changelog
-        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
-        run: |
-          echo "none"
-
-      - name: Upload changelog to Github
-        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
-        with:
-          name: changelog
-
   windows:
     needs: meta
     strategy:
