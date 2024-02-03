@@ -177,10 +177,10 @@ jobs:
       - name: Release to Github
         uses: softprops/action-gh-release@v1
         with:
-          body_path: CHANGELOG.md
+          body: "MAA works on DotNet 6.0 Desktop Runtime. It may works or not, I have no idea."
           files: |
             assets/*
-          prerelease: ${{ needs.meta.outputs.prerelease != 'false' }}
+          prerelease: true
 
       - name: Trigger secondary workflows # ref: https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
         run: |
