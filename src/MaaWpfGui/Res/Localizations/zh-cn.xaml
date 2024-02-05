@@ -338,8 +338,8 @@
     <system:String x:Key="Mall">获取信用及购物</system:String>
     <system:String x:Key="Mission">领取奖励</system:String>
     <system:String x:Key="AutoRoguelike">自动肉鸽</system:String>
-    <system:String x:Key="ReclamationAlgorithm">生息演算</system:String>
-    <system:String x:Key="ReclamationAlgorithm2">生息演算2</system:String>
+    <system:String x:Key="ReclamationAlgorithm">生息演算·沙中之火</system:String>
+    <system:String x:Key="ReclamationAlgorithm2">生息演算·沙洲遗闻</system:String>
     <system:String x:Key="Light">亮色</system:String>
     <system:String x:Key="Dark">暗色</system:String>
     <system:String x:Key="SyncWithOs">与系统同步</system:String>
@@ -617,7 +617,6 @@
     <system:String x:Key="RecruitConfirm">已确认招募</system:String>
     <system:String x:Key="InfrastDormDoubleConfirmed">干员冲突</system:String>
     <system:String x:Key="BegunToExplore">已开始探索</system:String>
-    <system:String x:Key="HasInvested">已投资</system:String>
     <system:String x:Key="ExplorationAbandoned">已放弃本次探索</system:String>
     <system:String x:Key="FightCompleted">战斗完成</system:String>
     <system:String x:Key="FightFailed">战斗失败</system:String>
@@ -634,14 +633,8 @@
     <system:String x:Key="EmergencyDps">关卡: 紧急作战</system:String>
     <system:String x:Key="DreadfulFoe">关卡: 险路恶敌</system:String>
     <system:String x:Key="RoguelikeEvent">事件:</system:String>
-    <system:String x:Key="RoguelikeSettlement">
-        肉鸽结算: {0}\n
-        探索: {1} 层 {2} 步\n
-        战斗: {3} / {4} 紧急 / {5} BOSS\n
-        招募: {6}  收藏品: {7}\n
-        难度: {8}  得分: {9}\n
-        Exp: {10}  Skill: {11}
-    </system:String>
+    <system:String x:Key="RoguelikeInvestment">已投资 {1}(+{0}), 存款: {2}</system:String>
+    <system:String x:Key="RoguelikeSettlement">肉鸽结算: {0}\n探索: {1} 层 {2} 步\n战斗: {3}/{4} 紧急/{5} BOSS\n招募: {6}   收藏品: {7}\n难度: {8}   得分: {9}\nExp: {10}   Skill: {11}</system:String>
     <system:String x:Key="CurTimes">当前次数</system:String>
     <system:String x:Key="NoDrop">无</system:String>
     <system:String x:Key="Drop" xml:space="preserve">本次掉落: </system:String>
@@ -772,6 +765,6 @@
     2. 不能在编队中有干员的情况下使用（把所有编队清空即可）
     3. 必须在生息演算主界面开始任务（导航还没写）
     </system:String>
-    <system:String x:Key="ReclamationBePatient">别急</system:String>
+    <system:String x:Key="ReclamationBePatient">牛牛，我太想进步了！你看，又急</system:String>
     <!--  !Reclamation  -->
 </ResourceDictionary>
