@@ -286,14 +286,14 @@ OF-1을 해금하지 않았다면 선택하지 말아 주세요.</system:String>
     <system:String x:Key="ReceiveMail">모든 메일 보상 받기</system:String>
     <system:String x:Key="ReceiveFreeRecruit">한정 가챠에서 매일 무료 단챠를 진행</system:String>
     <system:String x:Key="ReceiveFreeRecruitTip">무료 단챠가 없는 경우 가챠를 하지 않습니다</system:String>
-    <system:String x:Key="ReceiveFreeRecruitWarning">이 기능은 위험한 기능이며 문제가 발생할 수 있습니다\n'인식' 버튼을 누름으로써 귀하는 발생 가능한 위험성을 인식한 것입니다</system:String>
+    <system:String x:Key="GachaWarning">이 기능은 위험한 기능이며 문제가 발생할 수 있습니다\n'인식' 버튼을 누름으로써 귀하는 발생 가능한 위험성을 인식한 것입니다</system:String>
     <system:String x:Key="DroneUsage">드론 사용처</system:String>
     <system:String x:Key="MinimizeToTray">트레이로 최소화</system:String>
     <system:String x:Key="SystemNotification">중요 알림 팝업</system:String>
     <system:String x:Key="HideCloseButton">닫기 버튼 숨기기</system:String>
     <system:String x:Key="UseLogItemDateFormat">사용자 정의 로그 날짜 형식</system:String>
     <system:String x:Key="LogItemDateFormatString">날짜 형식 문자열</system:String>
-    <system:String x:Key="DarkModeSetColorsTip">변경 사항을 적용하려면 즉시 다시 시작하시겠습니까?</system:String>
+    <system:String x:Key="PromptRestartForSettingsChange">변경 사항을 적용하려면 즉시 다시 시작하시겠습니까?</system:String>
     <system:String x:Key="UseAlternateStage">대체 스테이지 사용</system:String>
     <system:String x:Key="UseRemainingSanityStage">남은 이성 활용</system:String>
     <system:String x:Key="UseRemainingSanityStageTip">주요 작업을 완료한 후 지정된 스테이지를 실행하며, 이성 회복제나 오리지늄을 사용하지 않습니다.</system:String>
@@ -493,7 +493,7 @@ Bilibili: 로그인 인터페이스에 표시되는 계정 이름(예: 장산)�
     <system:String x:Key="GachaDisclaimerHead">주의: 이것은</system:String>
     <system:String x:Key="GachaDisclaimerEmphasize">실제 뽑기입니다</system:String>
     <system:String x:Key="GachaAgreeDisclaimer">확인</system:String>
-    <system:String x:Key="GachaShowDisclaimerNoMore">다시 보지 않기</system:String>
+    <system:String x:Key="ShowDisclaimerNoMore">다시 보지 않기</system:String>
     <!--  !Gacha Recognition  -->
     <!--  로그  -->
     <system:String x:Key="Identifying">식별 중……</system:String>

@@ -1433,6 +1433,15 @@ namespace MaaWpfGui.ViewModels.UI
                 Instances.TaskQueueViewModel.UpdateStageList(true);
                 Instances.TaskQueueViewModel.UpdateDatePrompt();
                 Instances.AsstProxy.LoadResource();
+                var result = MessageBoxHelper.Show(
+                    LocalizationHelper.GetString("PromptRestartForSettingsChange"),
+                    LocalizationHelper.GetString("Tip"),
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+                    Bootstrapper.ShutdownAndRestartWithoutArgs();
+                }
             }
         }
 
@@ -2494,10 +2503,10 @@ namespace MaaWpfGui.ViewModels.UI
             get => _receiveFreeRecruit;
             set
             {
-                if (value == true)
+                if (value)
                 {
                     var result = MessageBoxHelper.Show(
-                            LocalizationHelper.GetString("ReceiveFreeRecruitWarning"),
+                            LocalizationHelper.GetString("GachaWarning"),
                             LocalizationHelper.GetString("Warning"),
                             MessageBoxButton.OKCancel,
                             MessageBoxImage.Warning,
@@ -3557,8 +3566,17 @@ namespace MaaWpfGui.ViewModels.UI
             set
             {
                 SetAndNotify(ref _touchMode, value);
-                ConfigurationHelper.SetValue(ConfigurationKeys.TouchMode, value);
                 UpdateInstanceSettings();
+                ConfigurationHelper.SetValue(ConfigurationKeys.TouchMode, value);
+                var result = MessageBoxHelper.Show(
+                    LocalizationHelper.GetString("PromptRestartForSettingsChange"),
+                    LocalizationHelper.GetString("Tip"),
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+                    Bootstrapper.ShutdownAndRestartWithoutArgs();
+                }
             }
         }
 
@@ -3893,7 +3911,7 @@ namespace MaaWpfGui.ViewModels.UI
 
                 /*
                 var result = MessageBoxHelper.Show(
-                    LocalizationHelper.GetString("DarkModeSetColorsTip"),
+                    LocalizationHelper.GetString("PromptRestartForSettingsChange"),
                     LocalizationHelper.GetString("Tip"),
                     MessageBoxButton.OKCancel,
                     MessageBoxImage.Question);

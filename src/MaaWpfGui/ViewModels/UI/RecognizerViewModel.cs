@@ -836,7 +836,7 @@ namespace MaaWpfGui.ViewModels.UI
         // 請勿更改
         // このコードを変更しないでください
         // 변경하지 마십시오
-        private bool _gachaShowDisclaimer = true; // !Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.GachaShowDisclaimerNoMore, bool.FalseString));
+        private bool _gachaShowDisclaimer = true; // !Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.ShowDisclaimerNoMore, bool.FalseString));
 
         public bool GachaShowDisclaimer
         {
@@ -863,6 +863,19 @@ namespace MaaWpfGui.ViewModels.UI
         // ReSharper disable once UnusedMember.Global
         public void GachaAgreeDisclaimer()
         {
+            var result = MessageBoxHelper.Show(
+                LocalizationHelper.GetString("GachaWarning"),
+                LocalizationHelper.GetString("Warning"),
+                MessageBoxButton.OKCancel,
+                MessageBoxImage.Warning,
+                ok: LocalizationHelper.GetString("Confirm"),
+                cancel: LocalizationHelper.GetString("Cancel"),
+                iconBrushKey: "DangerBrush");
+            if (result == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+
             GachaShowDisclaimer = false;
         }
 

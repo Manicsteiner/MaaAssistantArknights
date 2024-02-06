@@ -3380,6 +3380,10 @@
             [
                 "红集",
                 "红隼"
+            ],
+            [
+                "小.?满",
+                "小满"
             ]
         ]
     },
@@ -5224,7 +5228,8 @@
             "TerminalMistCity.png"
         ],
         "next": [
-            "RecruitingActivities"
+            "RecruitingActivities",
+            "Stop"
         ]
     },
     "RecruitingActivities": {
@@ -5243,6 +5248,9 @@
         "next": [
             "RecruitingActivitiesConfirm",
             "RecruitingActivities"
+        ],
+        "onErrorNext": [
+            "Stop"
         ]
     },
     "RecruitingActivitiesConfirm": {
@@ -5339,6 +5347,7 @@
             143
         ],
         "next": [
+            "Home@ReturnButtons#next",
             "Stop"
         ]
     },
@@ -11367,6 +11376,7 @@
             249,
             168
         ],
+        "postDelay": 1000,
         "next": [
             "Roguelike@MissionFailedFlag2",
             "Roguelike@StartExplore"
@@ -12741,23 +12751,19 @@
     "Roguelike@StageTraderInvest-Count": {
         "doc": "商店投资界面的余额显示，99 >> 100",
         "algorithm": "OcrDetect",
+        "text": [],
         "isAscii": true,
         "roi": [
             570,
             335,
             150,
             60
-        ]
-    },
-    "Roguelike@StageTraderInvest-Count-Error": {
-        "doc": "商店投资界面系统出错时余额显示",
-        "algorithm": "OcrDetect",
-        "isAscii": true,
-        "roi": [
-            635,
-            205,
-            70,
-            40
+        ],
+        "ocrReplace": [
+            [
+                ">",
+                ""
+            ]
         ]
     },
     "Roguelike@StageTraderInvestCancel": {
@@ -12790,6 +12796,16 @@
         "next": [
             "Roguelike@StageTraderInvestSystemError",
             "Roguelike@StageTraderInvestCancel"
+        ]
+    },
+    "Roguelike@StageTraderInvestError-Count": {
+        "doc": "商店投资界面系统出错时余额显示",
+        "baseTask": "NumberOcrReplace",
+        "roi": [
+            635,
+            205,
+            70,
+            40
         ]
     },
     "Roguelike@StageTraderInvestSystem": {
@@ -15673,17 +15689,18 @@
         "algorithm": "JustReturn",
         "action": "DoNothing",
         "sub": [
-            "Reclamation2Begin",
+            "Reclamation2BeginPlotEnterLoading@Reclamation2Begin",
             "Reclamation2CopiousCoppice",
             "Reclamation2Birdland",
             "Reclamation2SkipDays*3",
             "Reclamation2DeleteArchive"
         ],
         "Doc": "现在是纯tasks实现的，先一直跑着",
-        "next": "#self"
+        "next": [
+            "#self"
+        ]
     },
     "Reclamation2Begin": {
-        "Doc": "刚开始演算的剧情",
         "algorithm": "OcrDetect",
         "action": "ClickSelf",
         "text": [
@@ -15698,9 +15715,9 @@
             436,
             151
         ],
-        "postDelay": 8000,
         "next": [
-            "Reclamation2BeginPlotEnter"
+            "#self",
+            "#back"
         ]
     },
     "Reclamation2BeginPlot": {
@@ -15736,6 +15753,15 @@
         "next": [
             "#self",
             "Reclamation2BeginPlotLoading@Reclamation2EnterStage"
+        ]
+    },
+    "Reclamation2BeginPlotEnterLoading": {
+        "algorithm": "JustReturn",
+        "action": "DoNothing",
+        "postDelay": 8000,
+        "next": [
+            "Reclamation2BeginPlotEnter",
+            "Reclamation2Begin"
         ]
     },
     "Reclamation2BeginPlotLoading": {
@@ -15942,6 +15968,10 @@
             447,
             631,
             64
+        ],
+        "postDelay": 5000,
+        "next": [
+            "Stop"
         ]
     },
     "Reclamation2LeaveStage": {
@@ -15976,7 +16006,7 @@
         ]
     },
     "Reclamation2SkipDays": {
-        "algorithm": "justReturn",
+        "algorithm": "JustReturn",
         "action": "DoNothing",
         "postDelay": 1000,
         "next": [
@@ -16044,7 +16074,7 @@
         ]
     },
     "Reclamation2SkipDaysAward": {
-        "algorithm": "justReturn",
+        "algorithm": "JustReturn",
         "action": "DoNothing",
         "postDelay": 5000,
         "next": [
@@ -16053,7 +16083,7 @@
         ]
     },
     "Reclamation2SkipDaysAward1": {
-        "algorithm": "justReturn",
+        "algorithm": "JustReturn",
         "action": "DoNothing",
         "Doc": "会自己消失",
         "preDelay": 3000

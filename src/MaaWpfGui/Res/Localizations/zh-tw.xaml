@@ -286,14 +286,14 @@
     <system:String x:Key="ReceiveMail">收集所有郵件獎勵</system:String>
     <system:String x:Key="ReceiveFreeRecruit">進行限定池贈送的每日免費單抽</system:String>
     <system:String x:Key="ReceiveFreeRecruitTip">若不存在免費單抽，則不會抽取</system:String>
-    <system:String x:Key="ReceiveFreeRecruitWarning">該功能屬於危險功能，可能會造成誤抽\n按下「確認」鍵即視為你了解並願意承擔可能出現的風險</system:String>
+    <system:String x:Key="GachaWarning">該功能屬於危險功能，可能會造成誤抽\n按下「確認」鍵即視為你了解並願意承擔可能出現的風險</system:String>
     <system:String x:Key="DroneUsage">無人機用途</system:String>
     <system:String x:Key="MinimizeToTray">最小化時隱藏至工作列</system:String>
     <system:String x:Key="SystemNotification">重要訊息彈出系統通知</system:String>
     <system:String x:Key="HideCloseButton">隱藏關閉按鈕</system:String>
     <system:String x:Key="UseLogItemDateFormat">自訂日誌日期格式</system:String>
     <system:String x:Key="LogItemDateFormatString">日期格式字串</system:String>
-    <system:String x:Key="DarkModeSetColorsTip">是否立刻重啟應用更改？</system:String>
+    <system:String x:Key="PromptRestartForSettingsChange">是否立刻重啟應用更改？</system:String>
     <system:String x:Key="UseAlternateStage">使用備選關卡</system:String>
     <system:String x:Key="UseRemainingSanityStage">使用剩餘理智</system:String>
     <system:String x:Key="UseRemainingSanityStageTip">在完成主任務後刷取指定關卡，不使用理智藥/碎石</system:String>
@@ -491,7 +491,7 @@
     <system:String x:Key="GachaDisclaimerHead">請注意，這是</system:String>
     <system:String x:Key="GachaDisclaimerEmphasize">真正的抽卡</system:String>
     <system:String x:Key="GachaAgreeDisclaimer">知道了</system:String>
-    <system:String x:Key="GachaShowDisclaimerNoMore">下次不再提示</system:String>
+    <system:String x:Key="ShowDisclaimerNoMore">下次不再提示</system:String>
     <!--  !Gacha Recognition  -->
     <!--  日誌  -->
     <system:String x:Key="Identifying">正在辨識……</system:String>
