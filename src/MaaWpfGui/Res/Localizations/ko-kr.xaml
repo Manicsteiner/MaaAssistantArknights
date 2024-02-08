@@ -94,7 +94,6 @@
     <system:String x:Key="CustomizeInfrastSelectionEmpty">커스텀 시설 설정 선택이 비어 있습니다. 구성을 확인하거나 사용자 정의 기능을 끄십시오.</system:String>
     <system:String x:Key="General">일반 모드</system:String>
     <system:String x:Key="BlueStacks">BlueStacks</system:String>
-    <system:String x:Key="MuMuEmulator">MuMu Player 6</system:String>
     <system:String x:Key="MuMuEmulator12">MuMu Player 12</system:String>
     <system:String x:Key="LDPlayer">LD Player</system:String>
     <system:String x:Key="Nox">Nox</system:String>
@@ -217,6 +216,7 @@
     <system:String x:Key="NewVersionFoundButNoPackageDesc">전체 패키지를 수동으로 다운로드해 업데이트해 주세요!</system:String>
     <system:String x:Key="ForceScheduledStart">강제로 예약된 시작</system:String>
     <system:String x:Key="ForceScheduledStartTip">현재 작업을 중지하고 게임을 다시 시작하여 새 작업을 시작합니다</system:String>
+    <system:String x:Key="ShowWindowBeforeForceScheduledStart">강제로 예약된 시작 전 창 표시</system:String>
     <system:String x:Key="TimerCustomConfig">사용자 지정 구성 옵션</system:String>
     <system:String x:Key="TimerCustomConfigTip">2분 전에 재시작하여 설정을 전환합니다</system:String>
     <system:String x:Key="Timer">타이머</system:String>
@@ -602,6 +602,7 @@ Bilibili: 로그인 인터페이스에 표시되는 계정 이름(예: 장산)�
     <system:String x:Key="DropRecognitionError">드롭 인식 오류</system:String>
     <system:String x:Key="GiveUpUploadingPenguins">펭귄 물류에 업로드 불가</system:String>
     <system:String x:Key="TheEx">EX 스테이지가 없어 중단되었습니다</system:String>
+    <system:String x:Key="MissingOperators">다음 연산자 중 하나 이상이 누락되었습니다.</system:String>
     <system:String x:Key="StageQueue">레벨 대기열:</system:String>
     <system:String x:Key="UnableToAgent">프록시 명령을 사용할 수 없습니다</system:String>
     <system:String x:Key="MissionStart">행동 개시</system:String>

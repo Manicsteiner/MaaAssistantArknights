@@ -94,8 +94,7 @@
     <system:String x:Key="CustomizeInfrastSelectionEmpty">カスタム施設設定が空です。設定を確認するか、カスタマイズ機能をオフにしてください。</system:String>
     <system:String x:Key="General">一般モード</system:String>
     <system:String x:Key="BlueStacks">BlueStacks</system:String>
-    <system:String x:Key="MuMuEmulator">MuMuPlayer 6</system:String>
-    <system:String x:Key="MuMuEmulator12">MuMuPlayer 12</system:String>
+    <system:String x:Key="MuMuEmulator12">MuMu Player 12</system:String>
     <system:String x:Key="LDPlayer">LDPlayer</system:String>
     <system:String x:Key="Nox">NoxPlayer</system:String>
     <system:String x:Key="XYAZ">MEmu</system:String>
@@ -217,6 +216,7 @@
     <system:String x:Key="NewVersionFoundButNoPackageDesc">アップデートするには、手動でフルパッケージをダウンロードしてください！</system:String>
     <system:String x:Key="ForceScheduledStart">強制的なタイミングで起動</system:String>
     <system:String x:Key="ForceScheduledStartTip">現在のタスクを停止して、ゲームを再起動し、新しいタスクを開始します</system:String>
+    <system:String x:Key="ShowWindowBeforeForceScheduledStart">強制的なタイミングで起動前の表示ウィンドウ</system:String>
     <system:String x:Key="TimerCustomConfig">カスタム構成オプション</system:String>
     <system:String x:Key="TimerCustomConfigTip">2分前に再起動して設定を切り替えます</system:String>
     <system:String x:Key="Timer">タイマー</system:String>
@@ -602,6 +602,7 @@ Bilibili: ログイン インターフェイスに表示されるアカウント
     <system:String x:Key="DropRecognitionError">ドロップ認識エラー</system:String>
     <system:String x:Key="GiveUpUploadingPenguins">Penguin-Statsへのアップロードをあきらめました</system:String>
     <system:String x:Key="TheEx">ステージ報酬がないため停止します</system:String>
+    <system:String x:Key="MissingOperators">次のオペレーターは１つ以上欠落しています：</system:String>
     <system:String x:Key="StageQueue">レベルキュー:</system:String>
     <system:String x:Key="UnableToAgent">自動指揮利用不可</system:String>
     <system:String x:Key="MissionStart">行動開始しました</system:String>

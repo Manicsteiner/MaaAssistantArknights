@@ -94,7 +94,6 @@
     <system:String x:Key="CustomizeInfrastSelectionEmpty">Custom Base infrastructure selection is empty. Please check your configuration or turn off the Custom Base function.</system:String>
     <system:String x:Key="General">General Mode</system:String>
     <system:String x:Key="BlueStacks">BlueStacks</system:String>
-    <system:String x:Key="MuMuEmulator">MuMu Emulator 6</system:String>
     <system:String x:Key="MuMuEmulator12">MuMu Emulator 12</system:String>
     <system:String x:Key="LDPlayer">LD Player</system:String>
     <system:String x:Key="Nox">Nox</system:String>
@@ -217,6 +216,7 @@
     <system:String x:Key="NewVersionFoundButNoPackageDesc">Please manually download the full package to update!</system:String>
     <system:String x:Key="ForceScheduledStart">Force scheduled start</system:String>
     <system:String x:Key="ForceScheduledStartTip">Stop current task, restart game and start new tasks</system:String>
+    <system:String x:Key="ShowWindowBeforeForceScheduledStart">Show window before force scheduled start</system:String>
     <system:String x:Key="TimerCustomConfig">Custom config</system:String>
     <system:String x:Key="TimerCustomConfigTip">Restart and switch configuration two minutes in advance</system:String>
     <system:String x:Key="Timer">Timer</system:String>
@@ -602,6 +602,7 @@ The video aspect ratio needs to be 16:9 without interference factors such as bla
     <system:String x:Key="DropRecognitionError">Drops recognition error</system:String>
     <system:String x:Key="GiveUpUploadingPenguins">Abort upload to Penguin Statistics</system:String>
     <system:String x:Key="TheEx">No bonus stage, stopped</system:String>
+    <system:String x:Key="MissingOperators">One or more of the following operators are missing: </system:String>
     <system:String x:Key="StageQueue">Stage Queue:</system:String>
     <system:String x:Key="UnableToAgent">Unable to use PRTS</system:String>
     <system:String x:Key="MissionStart">Mission started</system:String>

@@ -827,6 +827,18 @@ namespace MaaWpfGui.Main
                 case "CheckStageValid":
                     Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("TheEx"), UiLogColor.Error);
                     break;
+
+                case "BattleFormationTask":
+                    {
+                        var why = details.TryGetValue("why", out var whyObj) ? whyObj.ToString() : string.Empty;
+                        if (why == "OperatorMissing")
+                        {
+                            var missingOpers = details["details"]["opers"].ToObject<List<string>>();
+                            Instances.CopilotViewModel.AddLog(LocalizationHelper.GetString("MissingOperators") + string.Join(", ", missingOpers), UiLogColor.Error);
+                        }
+
+                        break;
+                    }
             }
         }
 
@@ -1576,7 +1588,10 @@ namespace MaaWpfGui.Main
                 }
                 else
                 {
-                    Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("AutoDetectConnectionNotSupported"), UiLogColor.Error);
+                    Execute.OnUIThreadAsync(() =>
+                    {
+                        Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("AutoDetectConnectionNotSupported"), UiLogColor.Error);
+                    });
                 }
             }
 
@@ -1974,7 +1989,7 @@ namespace MaaWpfGui.Main
             }
 
             var taskParams = SerializeInfrastTaskParams(
-                order, usesOfDrones,continueTraining, dormThreshold,
+                order, usesOfDrones, continueTraining, dormThreshold,
                 dormFilterNotStationedEnabled, dormDormTrustEnabled, originiumShardAutoReplenishment,
                 isCustom, filename, planIndex);
             return AsstSetTaskParamsWithEncoding(id, taskParams);
@@ -2081,11 +2096,18 @@ namespace MaaWpfGui.Main
         /// <returns>是否成功。</returns>
         public bool AsstAppendReclamation2()
         {
+            /*
             var taskParams = new JObject
             {
                 ["task_names"] = new JArray { "Reclamation2" },
             };
             AsstTaskId id = AsstAppendTaskWithEncoding("Custom", taskParams);
+            */
+            var taskParams = new JObject
+            {
+                ["theme"] = 1,
+            };
+            AsstTaskId id = AsstAppendTaskWithEncoding("ReclamationAlgorithm", taskParams);
             _latestTaskId[TaskType.ReclamationAlgorithm2] = id;
             return id != 0;
         }

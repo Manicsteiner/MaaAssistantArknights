@@ -94,7 +94,6 @@
     <system:String x:Key="CustomizeInfrastSelectionEmpty">自訂設施配置選擇為空，請檢查配置或關閉自訂功能。</system:String>
     <system:String x:Key="General">通用模式</system:String>
     <system:String x:Key="BlueStacks">藍疊模擬器</system:String>
-    <system:String x:Key="MuMuEmulator">MuMu 模擬器 6</system:String>
     <system:String x:Key="MuMuEmulator12">MuMu 模擬器 12</system:String>
     <system:String x:Key="LDPlayer">雷電模擬器</system:String>
     <system:String x:Key="Nox">夜神模擬器</system:String>
@@ -217,6 +216,7 @@
     <system:String x:Key="NewVersionFoundButNoPackageDesc">請手動下載完整檔案更新！</system:String>
     <system:String x:Key="ForceScheduledStart">強制定時啟動</system:String>
     <system:String x:Key="ForceScheduledStartTip">停止當前任務，重新啟動遊戲並開始新任務</system:String>
+    <system:String x:Key="ShowWindowBeforeForceScheduledStart">強制定時啟動前顯示窗口</system:String>
     <system:String x:Key="TimerCustomConfig">自定義配置選擇</system:String>
     <system:String x:Key="TimerCustomConfigTip">將提前兩分鐘重開並切換配置</system:String>
     <system:String x:Key="Timer">定時</system:String>
@@ -600,6 +600,7 @@
     <system:String x:Key="DropRecognitionError">掉落辨識錯誤</system:String>
     <system:String x:Key="GiveUpUploadingPenguins">放棄上傳企鵝物流</system:String>
     <system:String x:Key="TheEx">無獎勵關卡，已停止</system:String>
+    <system:String x:Key="MissingOperators">缺少以下一個或多個幹員：</system:String>
     <system:String x:Key="StageQueue">關卡隊列:</system:String>
     <system:String x:Key="UnableToAgent">無法使用代理指揮</system:String>
     <system:String x:Key="MissionStart">已開始行動</system:String>
