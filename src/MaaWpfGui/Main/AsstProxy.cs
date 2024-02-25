@@ -833,8 +833,9 @@ namespace MaaWpfGui.Main
                         var why = details.TryGetValue("why", out var whyObj) ? whyObj.ToString() : string.Empty;
                         if (why == "OperatorMissing")
                         {
-                            var missingOpers = details["details"]["opers"].ToObject<List<string>>();
-                            Instances.CopilotViewModel.AddLog(LocalizationHelper.GetString("MissingOperators") + string.Join(", ", missingOpers), UiLogColor.Error);
+                            var missingOpers = details["details"]["opers"].ToObject<List<List<string>>>();
+                            var missingOpersStr = "[" + string.Join("]; [", missingOpers.Select(opers => string.Join(", ", opers))) + "]";
+                            Instances.CopilotViewModel.AddLog(LocalizationHelper.GetString("MissingOperators") + missingOpersStr, UiLogColor.Error);
                         }
 
                         break;
@@ -1318,8 +1319,8 @@ namespace MaaWpfGui.Main
 
                 case "InfrastTrainingTimeLeft":
                     Instances.TaskQueueViewModel.AddLog("[" + subTaskDetails["operator"] + "]" + subTaskDetails["skill"] + "\n" +
-                        LocalizationHelper.GetString("TrainingLevel") + ": " + $"{(int)subTaskDetails["level"]}" + "\n" + LocalizationHelper.GetString("TimeLeft") + ": " +
-                        $"{(int)subTaskDetails["hh"]}" + "h " + $"{(int)subTaskDetails["mm"]}" + "m " + $"{(int)subTaskDetails["ss"]}" + "s");
+                        LocalizationHelper.GetString("TrainingLevel") + ": " + $"{(int)subTaskDetails["level"]}" + "\n" +
+                        string.Format(LocalizationHelper.GetString("TrainingTimeLeft") + ": {0:}:{1:}:{2:}", subTaskDetails["hh"], subTaskDetails["mm"], subTaskDetails["ss"]));
                     break;
 
                 /* 生息演算 */
