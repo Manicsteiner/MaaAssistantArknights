@@ -115,6 +115,8 @@
     <system:String x:Key="RoguelikeStartingCoreCharNotFound">The agent entered「{0}」is not in battle_data. Check that the name entered is correct, or check the maa resource version.</system:String>
     <system:String x:Key="RoguelikeStartWithEliteTwo">Repeat for「Starting Operator」Elite 2</system:String>
     <system:String x:Key="RoguelikeOnlyStartWithEliteTwo">Only Repeat for「Starting Operator」Elite 2, No Battle</system:String>
+    <!--<system:String x:Key="Roguelike3NewSquad2StartingFoldartal">生活队凹开局密文板</system:String>
+    <system:String x:Key="Roguelike3NewSquad2StartingFoldartalTip">Write up to three and Separate with ; </system:String>-->
     <system:String x:Key="RoguelikeUseSupportUnit">Select 「Starting Operator」 from support unit list</system:String>
     <system:String x:Key="RoguelikeUseNonFriendSupport">Enable non-friend support</system:String>
     <system:String x:Key="RoguelikeDelayAbortUntilCombatComplete">Don't abort Auto IS until the end of battle</system:String>
@@ -519,8 +521,8 @@ The video aspect ratio needs to be 16:9 without interference factors such as bla
     <system:String x:Key="AddUserAdditionalTip">Use「;」as the separator,「,」to separate the operator name and skills, for example: W, 3; Ash, 2</system:String>
     <system:String x:Key="UseCopilotList">Battle list</system:String>
     <system:String x:Key="UseCopilotListTip">Please switch to the level selection page before starting</system:String>
-    <system:String x:Key="CopilotTaskRaidStage">(Raid)</system:String>
-    <system:String x:Key="CopilotAddTask">Right click to add raid difficulty</system:String>
+    <system:String x:Key="CopilotTaskRaidStage">(Challenge)</system:String>
+    <system:String x:Key="CopilotAddTask">Right click to add challenge difficulty</system:String>
     <system:String x:Key="CopilotClearTask">Right click to clear inactive tasks</system:String>
     <system:String x:Key="LoopTimes">Loop Times</system:String>
     <system:String x:Key="Start">Start</system:String>
@@ -537,11 +539,11 @@ The video aspect ratio needs to be 16:9 without interference factors such as bla
         The video aspect ratio needs to be 16:9 without interference factors such as black borders, emulator borders special shapes and screen corrections.\n\n
         6. Battle list:\n
         After selecting the job, check that the level name below the list is correct (e.g.: CV-EX-1). \n
-        Add: Left click to add normal difficulty, right click to add raid difficulty. \n
+        Add: Left click to add normal difficulty, right click to add challenge difficulty. \n
         Clear: Left click to clear the list, right click to remove only inactive tasks. \n
         Before starting, you need to switch to the level selection interface. Cross-chapter navigation is not supported. \n
         The operation will be terminated when encountering insufficient sanity, losing the battle, or failing to settle with three stars. \n
-        When you want to use the batch import to add a adverse level, you need to modify the file name (e.g.: '1-7(Raid).json'). \n\n
+        When you want to use the batch import to add a challenge mode level, you need to modify the file name (e.g.: '1-7(Raid).json'). \n\n
     </system:String>
     <system:String x:Key="CopilotFileReadError">Failed to read file!</system:String>
     <system:String x:Key="CopilotNoFound">No corresponding file found!</system:String>
