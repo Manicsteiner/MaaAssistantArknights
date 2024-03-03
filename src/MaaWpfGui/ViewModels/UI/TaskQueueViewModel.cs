@@ -2868,8 +2868,6 @@ namespace MaaWpfGui.ViewModels.UI
 
                 SetAndNotify(ref _medicineNumber, value);
 
-                // If the amount of medicine is 0, the stone is not used.
-                UseStone = UseStone;
                 SetFightParams();
                 ConfigurationHelper.SetValue(ConfigurationKeys.UseMedicineQuantity, MedicineNumber);
             }
@@ -2885,17 +2883,17 @@ namespace MaaWpfGui.ViewModels.UI
             get => _useStoneWithNull;
             set
             {
-                // If the amount of medicine is 0, the stone is not used.
-                if (!int.TryParse(MedicineNumber, out int result) || result == 0)
+                SetAndNotify(ref _useStoneWithNull, value);
+                if (value != false)
                 {
-                    value = false;
+                    MedicineNumber = "9999";
+                    if (!UseMedicine)
+                    {
+                        UseMedicineWithNull = null;
+                    }
                 }
 
-                SetAndNotify(ref _useStoneWithNull, value);
-                if (value != false && !UseMedicine)
-                {
-                    UseMedicineWithNull = null;
-                }
+                NotifyOfPropertyChange(nameof(UseStone));
 
                 SetFightParams();
             }
@@ -2904,7 +2902,8 @@ namespace MaaWpfGui.ViewModels.UI
         /// <summary>
         /// Gets or sets a value indicating whether to use originiums.
         /// </summary>
-        private bool UseStone
+        // ReSharper disable once MemberCanBePrivate.Global
+        public bool UseStone
         {
             get => UseStoneWithNull != false;
             set => UseStoneWithNull = value;
