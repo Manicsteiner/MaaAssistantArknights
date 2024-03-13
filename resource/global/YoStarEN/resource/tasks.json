@@ -280,6 +280,10 @@
         "Doc": "该任务的 ocrReplace 被所有涉及干员名的英文识别任务复用 This task's ocrReplace is reused by all recognition tasks related to operator names",
         "ocrReplace": [
             [
+                ":",
+                ""
+            ],
+            [
                 "SilverAsh",
                 "银灰"
             ],
@@ -6766,18 +6770,197 @@
             ]
         ]
     },
+    "Sami@Roguelike@ContinueClick": {
+        "text": [
+            "Brisk Marshalands",
+            "Placid Forests",
+            "Dawning Frostbounds",
+            "Gelid Rockshelves",
+            "Immaculate Garden",
+            "Clayrovant Carcass"
+        ],
+        "roi": [
+            467,
+            531,
+            357,
+            72
+        ]
+    },
+    "Sami@Roguelike@FoldartalGainOcr": {
+        "ocrReplace": [
+            [
+                "Hunt",
+                "捕猎"
+            ],
+            [
+                "Patrol",
+                "巡视"
+            ],
+            [
+                "Nest",
+                "筑巢"
+            ],
+            [
+                "Plunder",
+                "掠夺"
+            ],
+            [
+                "Reproduce",
+                "繁衍"
+            ],
+            [
+                "Migrate",
+                "迁徙"
+            ],
+            [
+                "Originium",
+                "源石"
+            ],
+            [
+                "Tree",
+                "乔木"
+            ],
+            [
+                "Stone",
+                "砂石"
+            ],
+            [
+                "Shrub",
+                "灌木"
+            ],
+            [
+                "Beast",
+                "兽类"
+            ],
+            [
+                "Human",
+                "人类"
+            ],
+            [
+                "Delight",
+                "喜悦"
+            ],
+            [
+                "Surprise",
+                "惊讶"
+            ],
+            [
+                "Rage",
+                "愤怒"
+            ],
+            [
+                "Doubt",
+                "疑惑"
+            ],
+            [
+                "Anticipate",
+                "憧憬"
+            ],
+            [
+                "Love",
+                "爱恋"
+            ],
+            [
+                "Hero",
+                "英雄"
+            ],
+            [
+                "Canopy",
+                "树冠"
+            ],
+            [
+                "Snowpriest",
+                "雪祀"
+            ],
+            [
+                "Water",
+                "水面"
+            ],
+            [
+                "Shaman",
+                "萨满"
+            ],
+            [
+                "Eye",
+                "眼睛"
+            ],
+            [
+                "Warrior",
+                "战士"
+            ],
+            [
+                "Arch",
+                "拱门"
+            ],
+            [
+                "Hunter",
+                "猎手"
+            ],
+            [
+                "Light",
+                "光芒"
+            ],
+            [
+                "Outcast",
+                "黜人"
+            ],
+            [
+                "Earth",
+                "大地"
+            ],
+            [
+                "Sing",
+                "歌唱"
+            ],
+            [
+                "Silence",
+                "沉默"
+            ],
+            [
+                "Recite",
+                "朗诵"
+            ],
+            [
+                "Debate",
+                "辩论"
+            ],
+            [
+                "Scar",
+                "伤痕"
+            ],
+            [
+                "Console",
+                "慰藉"
+            ],
+            [
+                "Void",
+                "空无"
+            ],
+            [
+                "Confess",
+                "告解"
+            ]
+        ]
+    },
     "Sami@Roguelike@NextLevel": {
         "text": [
             "Obtain after",
             "this floor"
         ]
     },
+    "Sami@Roguelike@StageSafeHouseReuse": {
+        "text": [
+            "Use the Safe House again",
+            "Use the Safe"
+        ]
+    },
     "Sami@Roguelike@StrategyChange_mode0": {
+        "doc": "Ocr can't read 3rd floor, use temperature instead (experimental)",
         "roi": [
-            635,
-            44,
-            97,
-            33
+            593,
+            48,
+            135,
+            27
         ],
         "text": [
             "_aggressive",
@@ -6786,27 +6969,31 @@
         ],
         "ocrReplace": [
             [
-                "Brisk ?M?arshlands",
+                ".*Brisk ?M?arshlands.*",
                 "_aggressive"
             ],
             [
-                "Placid ?Forests",
+                ".*Placid ?Forests.*",
                 "_aggressive"
             ],
             [
-                "Dawning ?Frostbounds",
+                ".*Dawning ?Frostbounds.*",
                 "_pragmatic"
             ],
             [
-                "Gelid ?Rockshelves",
+                ".*12.*",
                 "_pragmatic"
             ],
             [
-                "Immaculate ?Garden",
+                ".*Gelid ?Rockshelves.*",
+                "_pragmatic"
+            ],
+            [
+                ".*Immaculate ?Garden.*",
                 "_default"
             ],
             [
-                "Clairvoyant ?Carcass",
+                ".*Clairvoyant ?Carcass.*",
                 "_default"
             ],
             [
@@ -6816,11 +7003,12 @@
         ]
     },
     "Sami@Roguelike@StrategyChange_mode4": {
+        "doc": "Ocr can't read 3rd floor, use temperature instead (experimental)",
         "roi": [
-            635,
-            44,
-            97,
-            33
+            593,
+            48,
+            135,
+            27
         ],
         "text": [
             "_default",
@@ -6828,27 +7016,31 @@
         ],
         "ocrReplace": [
             [
-                "Brisk ?M?arshlands",
+                ".*Brisk ?M?arshlands.*",
                 "_default"
             ],
             [
-                "Placid ?Forests",
+                ".*Placid ?Forests.*",
                 "_default"
             ],
             [
-                "Dawning ?Frostbounds",
+                ".*Dawning ?Frostbounds.*",
                 "_exit"
             ],
             [
-                "Gelid ?Rockshelves",
+                ".*12.*",
                 "_exit"
             ],
             [
-                "Immaculate ?Garden",
+                ".*Gelid ?Rockshelves.*",
                 "_exit"
             ],
             [
-                "Clairvoyant ?Carcass",
+                ".*Immaculate ?Garden.*",
+                "_exit"
+            ],
+            [
+                ".*Clairvoyant ?Carcass.*",
                 "_exit"
             ],
             [
