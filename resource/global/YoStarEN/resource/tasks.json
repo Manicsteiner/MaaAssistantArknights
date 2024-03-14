@@ -6672,7 +6672,6 @@
         "templThreshold": 0.7
     },
     "Mizuki@Roguelike@GetDropSelectRecruit": {
-        "templThreshold": 0.75,
         "template": "Mizuki@Roguelike@GetDropSelectRecruit.png"
     },
     "Mizuki@Roguelike@NextLevel": {
@@ -6942,10 +6941,42 @@
             ]
         ]
     },
+    "Sami@Roguelike@FoldartalUseConfirm": {
+        "text": [
+            "Declare"
+        ]
+    },
+    "Sami@Roguelike@FoldartalUseOcr": {
+        "text": [
+            "Layout"
+        ],
+        "roi": [
+            38,
+            64,
+            95,
+            578
+        ]
+    },
+    "Sami@Roguelike@GetDropSelectRecruit": {
+        "template": "Sami@Roguelike@GetDropSelectRecruit.png"
+    },
     "Sami@Roguelike@NextLevel": {
         "text": [
             "Obtain after",
-            "this floor"
+            "this floor",
+            "Collapse will trigger",
+            "no next floor"
+        ],
+        "roi": [
+            218,
+            600,
+            247,
+            78
+        ]
+    },
+    "Sami@Roguelike@SelectTheme": {
+        "text": [
+            "Expeditioner"
         ]
     },
     "Sami@Roguelike@StageSafeHouseReuse": {
