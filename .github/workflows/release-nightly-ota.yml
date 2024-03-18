@@ -60,6 +60,9 @@ jobs:
       - name: Set tag
         id: set_tag
         run: |
+          # pre_version是上一个公版，这里需要拉上一个tag，避免堆积过多commit
+          $latest_tag=$(git describe --tags --abbrev=0)
+          echo "latest_tag=$latest_tag" >> $env:GITHUB_OUTPUT
           $described = $(git describe --tags --long --match 'v*')
           $ids = $($described -split "-")
           if ($ids.length -eq 3) {
@@ -93,10 +96,8 @@ jobs:
       - name: Generate Changelog
         id: generate_changelog
         run: |
-          # pre_version是上一个公版，这里需要拉上一个tag，避免堆积过多commit
-          $latest_tag=$(git describe --tags --abbrev=0)
-          $content=$(git log --pretty=format:"- %s&nbsp;&nbsp;&nbsp;&nbsp;@%an<br>" $latest_tag..alpha/${{ steps.set_tag.outputs.tag }})
-          echo "changelog="$content >> $env:GITHUB_OUTPUT
+          $content=$(git log --pretty=format:"- %s @%an \n\n" ${{ steps.set_tag.outputs.latest_tag }}..alpha/${{ steps.set_tag.outputs.tag }})
+          echo "changelog=$content" >> $env:GITHUB_OUTPUT
           echo $content
 
       - name: Cache .nuke/temp, ~/.nuget/packages
@@ -243,7 +244,7 @@ jobs:
         run: |
           pre_version=${{ needs.build-win-nightly.outputs.pre_version }}
           cur_version=${{ needs.build-win-nightly.outputs.main_tag_name }}
-          echo -e "${{ inputs.release_body || '' }}\n\n"${{ needs.build-win-nightly.outputs.changelog }}"\n\n**Full Changelog**: [$pre_version -> $cur_version](https://github.com/$GITHUB_REPOSITORY/compare/$pre_version...$cur_version)" > alpha_changelog.md
+          echo -e "${{ inputs.release_body || '' }}\n\n${{ needs.build-win-nightly.outputs.changelog }}\n\n**Full Changelog**: [$pre_version -> $cur_version](https://github.com/$GITHUB_REPOSITORY/compare/$pre_version...$cur_version)" > alpha_changelog.md
           export r=$(cat alpha_changelog.md)
 
           # https://github.com/svenstaro/upload-release-action
