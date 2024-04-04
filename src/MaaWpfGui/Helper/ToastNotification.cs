@@ -25,8 +25,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using HandyControl.Data;
-using MaaWpfGui.Configuration;
-using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.Win32;
 using Notification.Wpf;
 using Notification.Wpf.Base;
@@ -34,7 +32,6 @@ using Notification.Wpf.Constants;
 using Notification.Wpf.Controls;
 using Semver;
 using Serilog;
-using Stylet;
 using Application = System.Windows.Forms.Application;
 using FontFamily = System.Windows.Media.FontFamily;
 
@@ -401,6 +398,21 @@ namespace MaaWpfGui.Helper
         /// <summary>
         /// 显示通知
         /// </summary>
+        public void Show()
+        {
+            if (!Instances.SettingsViewModel.UseNotify)
+            {
+                _logger.Information($"UseNotify is not turned on, the information is {_contentCollection}");
+                return;
+            }
+
+            _contentCollection.AppendLine(); // content 不能为空，否则通知发不出去
+            ShowBalloonTip(_notificationTitle, _contentCollection.ToString(), NotifyIconInfoType.None);
+        }
+
+        /// <summary>
+        /// 显示通知
+        /// </summary>
         /// <param name="lifeTime">通知显示时间 (s)</param>
         /// <param name="row">内容显示行数，如果内容太多建议使用 <see cref="ShowMore(double, uint, NotificationSounds, NotificationContent)"/></param>
         /// <param name="sound">播放提示音</param>
@@ -410,7 +422,11 @@ namespace MaaWpfGui.Helper
             NotificationSounds sound = NotificationSounds.Notification,
             NotificationContent notificationContent = null)
         {
+            Show();
+            return;
+
             // TODO: 整理过时代码
+            /*
             if (!ConfigFactory.CurrentConfig.GUI.UseNotify)
             {
                 return;
@@ -425,14 +441,6 @@ namespace MaaWpfGui.Helper
                         if (_buttonSystemEnabled)
                         {
                             Uri burl = new Uri(ButtonSystemUrl);
-                            new ToastContentBuilder()
-                                .AddText(_notificationTitle)
-                                .AddText(_contentCollection.ToString())
-                                .AddButton(new ToastButton()
-                                    .SetContent(_buttonSystemText)
-                                    .SetProtocolActivation(burl))
-                                .Show();
-                            /*
                             var toastContent = new ToastContentBuilder()
                                 .AddText(_notificationTitle)
                                 .AddText(_contentCollection.ToString())
@@ -444,16 +452,10 @@ namespace MaaWpfGui.Helper
                             toastXmlDoc.LoadXml(toastContent.GetContent());
                             var toastNotification = new Windows.UI.Notifications.ToastNotification(toastXmlDoc);
                             ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
-                            */
                         }
                         else
                         {
-                            new ToastContentBuilder()
-                                .AddText(_notificationTitle)
-                                .AddText(_contentCollection.ToString())
-                                .Show();
-                            /*
-                             var toastContent = new ToastContentBuilder()
+                            var toastContent = new ToastContentBuilder()
                                 .AddText(_notificationTitle)
                                 .AddText(_contentCollection.ToString())
                                 .GetToastContent();
@@ -461,7 +463,6 @@ namespace MaaWpfGui.Helper
                             toastXmlDoc.LoadXml(toastContent.GetContent());
                             var toastNotification = new Windows.UI.Notifications.ToastNotification(toastXmlDoc);
                             ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
-                            */
                         }
                     });
 
@@ -497,6 +498,7 @@ namespace MaaWpfGui.Helper
 
             // 任务栏闪烁
             FlashWindowEx();
+            */
         }
 
         /// <summary>
