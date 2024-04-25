@@ -1937,13 +1937,6 @@ namespace MaaWpfGui.ViewModels.UI
                     return;
                 }
 
-                if (!string.IsNullOrEmpty(value) && DataHelper.GetCharacterByNameOrAlias(value) is null)
-                {
-                    MessageBoxHelper.Show(
-                        string.Format(LocalizationHelper.GetString("RoguelikeStartingCoreCharNotFound"), value),
-                        LocalizationHelper.GetString("Tip"));
-                }
-
                 SetAndNotify(ref _roguelikeCoreChar, value);
                 Instances.TaskQueueViewModel.AddLog(value);
                 ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeCoreChar, value);
@@ -1958,7 +1951,15 @@ namespace MaaWpfGui.ViewModels.UI
         public ObservableCollection<string> RoguelikeCoreCharList
         {
             get => _roguelikeCoreCharList;
-            private set => SetAndNotify(ref _roguelikeCoreCharList, value);
+            private set
+            {
+                if (!string.IsNullOrEmpty(RoguelikeCoreChar) && !value.Contains(RoguelikeCoreChar))
+                {
+                    value.Add(RoguelikeCoreChar);
+                }
+
+                SetAndNotify(ref _roguelikeCoreCharList, value);
+            }
         }
 
         private string _roguelikeStartWithEliteTwo = ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeStartWithEliteTwo, false.ToString());
@@ -3697,6 +3698,23 @@ namespace MaaWpfGui.ViewModels.UI
                 SetAndNotify(ref _minimizeToTray, value);
                 ConfigurationHelper.SetValue(ConfigurationKeys.MinimizeToTray, value.ToString());
                 Instances.MainWindowManager.SetMinimizeToTaskBar(value);
+            }
+        }
+
+        private bool _windowTitleScrollable = Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.WindowTitleScrollable, bool.FalseString));
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to make window title scrollable.
+        /// </summary>
+        public bool WindowTitleScrollable
+        {
+            get => _windowTitleScrollable;
+            set
+            {
+                SetAndNotify(ref _windowTitleScrollable, value);
+                ConfigurationHelper.SetValue(ConfigurationKeys.WindowTitleScrollable, value.ToString());
+                var rvm = (RootViewModel)this.Parent;
+                rvm.WindowTitleScrollable = value;
             }
         }
 
