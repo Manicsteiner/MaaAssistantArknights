@@ -304,6 +304,7 @@
     <system:String x:Key="SystemNotification">重要な通知をポップアップする</system:String>
     <system:String x:Key="HideCloseButton">「閉じる」ボタンを隠す</system:String>
     <system:String x:Key="WindowTitleScrollable">タイトルのスクロール機能</system:String>
+    <system:String x:Key="TitleBarDisplayContent">タイトルバー表示コンテンツ</system:String>
     <system:String x:Key="UseLogItemDateFormat">カスタムログ日付形式</system:String>
     <system:String x:Key="LogItemDateFormatString">日付書式文字列</system:String>
     <system:String x:Key="PromptRestartForSettingsChange">変更を適用するためにすぐに再起動しますか？</system:String>
@@ -681,7 +682,7 @@
     <system:String x:Key="BattleFormation">編成開始</system:String>
     <system:String x:Key="BattleFormationSelected" xml:space="preserve">オペレーターを選択: </system:String>
     <system:String x:Key="CurrentSteps">現在の手順: {0} {1}</system:String>
-    <system:String x:Key="UnsupportedLevel">サポートされていないレベルは、リソースのバージョンとステージ名を確認してください!</system:String>
+    <system:String x:Key="UnsupportedLevel">サポートされていないレベルです。レベル名を確認するか、設定に移動してソフトウェア更新をチェックし、リソースバージョンを更新してみてください！</system:String>
     <system:String x:Key="RecruitTagsDetected" xml:space="preserve">認識結果: </system:String>
     <system:String x:Key="ConnectFailed">接続失敗</system:String>
     <system:String x:Key="TryToStartEmulator">エミュレータを起動しようとしています</system:String>
