@@ -16,5 +16,15 @@
                 "**/*.pdb"
             ]
         }
+    },
+    {
+        "name_template": "FakeOTA-ProgramOnly-{VERSION}-win-{PLATFORM}",
+        "type": "MaaOTA",
+        "configuration": {
+            "include": [
+                "**/MAA.exe",
+                "**/MaaCore.dll"
+            ]
+        }
     }
 ]
