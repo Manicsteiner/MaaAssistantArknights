@@ -4380,7 +4380,7 @@ namespace MaaWpfGui.ViewModels.UI
 
             if (now.IsAprilFoolsDay())
             {
-                return true;
+                return false;
             }
 
             string[] wineList = ["酒", "liquor", "drink", "wine", "beer", "술", "🍷", "🍸", "🍺", "🍻", "🥃", "🍶"];
