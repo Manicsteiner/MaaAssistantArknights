@@ -21,7 +21,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Management;
-using System.Printing;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -3301,6 +3300,12 @@ namespace MaaWpfGui.ViewModels.UI
                     }
 
                     _enable = value;
+
+                    if (value)
+                    {
+                        MessageBoxHelper.Show(LocalizationHelper.GetString("MuMu12ExtrasEnabledTip"));
+                    }
+
                     Instances.AsstProxy.Connected = false;
                     OnPropertyChanged();
                     ConfigurationHelper.SetValue(ConfigurationKeys.MuMu12ExtrasEnabled, value.ToString());
@@ -4053,6 +4058,22 @@ namespace MaaWpfGui.ViewModels.UI
                 }
 
                 Instances.TaskQueueViewModel.UpdateStageList(true);
+            }
+        }
+
+        private bool _hideSeries = Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.HideSeries, bool.FalseString));
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to hide series.
+        /// </summary>
+        public bool HideSeries
+        {
+            get => _hideSeries;
+            set
+            {
+                SetAndNotify(ref _hideSeries, value);
+                Instances.TaskQueueViewModel.HideSeries = value;
+                ConfigurationHelper.SetValue(ConfigurationKeys.HideSeries, value.ToString());
             }
         }
 

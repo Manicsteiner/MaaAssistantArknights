@@ -313,6 +313,7 @@ Please do not check it when the stage OF-1 is not unlocked.</system:String>
     <system:String x:Key="UseRemainingSanityStageTip">Brush the specified stage after completing the main task, won't use sanity potion or stone</system:String>
     <system:String x:Key="UseExpiringMedicine">Unlimited use of expiring sanity potion</system:String>
     <system:String x:Key="HideUnavailableStage">Hide today's not open stages</system:String>
+    <system:String x:Key="HideSeries">Hide series</system:String>
     <system:String x:Key="CustomInfrastPlanShowInFightSettings">Show Base Plan</system:String>
     <system:String x:Key="MainViewButtonFeature">Variable function button</system:String>
     <system:String x:Key="CustomStageCode">Manual entry of stage names</system:String>
@@ -336,6 +337,18 @@ Only supports Official(CN) and Bilibili server. Login account is not supported.<
     <system:String x:Key="ConnectionAddressTip">It will be filled in automatically when you use it for the first time. If you encounter any problems, you can try to manually modify it</system:String>
     <system:String x:Key="ConnectionPreset">Connection Preset</system:String>
     <system:String x:Key="MuMu12ExtrasEnabled">Enable MuMu's screenshot enhancement mode</system:String>
+    <system:String x:Key="MuMu12ExtrasEnabledTip">
+        Please fill in the following information:\n
+        1. Emulator Path: (e.g., C:\\Program Files\\Netease\\MuMuPlayer-12.0)\n
+        The emulator path should be the parent folder path of the emulator application. For example, if the application path is\n
+        「C:\\Program Files\\Netease\\MuMuPlayer-12.0\\shell\\MuMuPlayer.exe」,\n
+        you should fill in\n
+        「C:\\Program Files\\Netease\\MuMuPlayer-12.0」.\n\n
+        2. Instance Number: (e.g., 0)\n
+        The instance number can be found in the MuMu Multi-Instance Manager, default is 0. If there are multiple instances, the number is shown before the instance.\n\n
+        3. Window Number: (e.g., 0)\n
+        Note: Fill in 0 after closing MuMu's background keep-alive. If you need to open the background keep-alive, please explore the method yourself.
+    </system:String>
     <system:String x:Key="MuMu12EmulatorPath">MuMu12 Emulator exec path</system:String>
     <system:String x:Key="MuMu12Index">Instance Number</system:String>
     <system:String x:Key="MuMu12Display">Display Number</system:String>
@@ -474,7 +487,7 @@ Only supports Official(CN) and Bilibili server. Login account is not supported.<
     <!--  !Depot Recognition  -->
     <!--  Operator Recognition  -->
     <system:String x:Key="OperBoxRecognition">Operator</system:String>
-    <system:String x:Key="OperBoxRecognitionTip">This function is still in testing. If you encounter any unexpected results, please zip the 「debug/oper」 folder in the installation path and submit an issue on GitHub</system:String>
+    <system:String x:Key="OperBoxRecognitionTip">"Marked" operators can't be recognized. Please unmark them before starting.\nThis function is still in testing. If you encounter any unexpected results, please zip the 「debug/oper」 folder in the installation path and submit an issue on GitHub</system:String>
     <system:String x:Key="OperBoxRecognitionResult">Not owned: {0}\n\n{1}\n\nOwned: {2}\n\n{3}</system:String>
     <system:String x:Key="StartToOperBoxRecognition">Start to Identify</system:String>
     <system:String x:Key="OperBoxCopyToClipboard">Copy to Clipboard</system:String>
@@ -721,7 +734,7 @@ The video aspect ratio needs to be 16:9 without interference factors such as bla
     <system:String x:Key="Level3UseShortTime2">Set 1:00 instead of 9:00 for 3★ Tags</system:String>
     <system:String x:Key="Level3UseShortTimeTip">Doesn't interfere with other ★ stars</system:String>
     <system:String x:Key="RecruitMaxTimes">Recruit max times</system:String>
-    <system:String x:Key="ManuallySelectLevel1">Manually confirm Robot tag</system:String>
+    <system:String x:Key="ManuallySelectLevel1">Manually confirm 1★</system:String>
     <system:String x:Key="AutoSelectLevel3">Auto confirm 3★</system:String>
     <system:String x:Key="AutoSelectLevel4">Auto confirm 4★</system:String>
     <system:String x:Key="AutoSelectLevel5">Auto confirm 5★</system:String>
