@@ -24,6 +24,7 @@ namespace asst
     public:
         virtual bool verify(AsstMsg msg, const json::value& details) const override;
         void set_custom(RoguelikeCustomType type, std::string custom);
+        void set_custom(RoguelikeCustomType type, int custom);
 
     protected:
         virtual bool _run() override;
@@ -35,6 +36,7 @@ namespace asst
 
     private:
         std::unordered_map<RoguelikeCustomType, std::string> m_customs;
+        int m_usesupportminlevel;
         mutable RoguelikeCustomType m_waiting_to_run = RoguelikeCustomType::None;
     };
 }

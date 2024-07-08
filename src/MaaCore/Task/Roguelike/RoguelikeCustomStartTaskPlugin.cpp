@@ -50,6 +50,14 @@ void asst::RoguelikeCustomStartTaskPlugin::set_custom(RoguelikeCustomType type, 
     m_customs.insert_or_assign(type, std::move(custom));
 }
 
+void asst::RoguelikeCustomStartTaskPlugin::set_custom(RoguelikeCustomType type, int custom)
+{
+    if (type == RoguelikeCustomType::UseSupportMinLevel)
+    {
+        m_usesupportminlevel = custom;
+    }
+}
+
 bool asst::RoguelikeCustomStartTaskPlugin::_run()
 {
     const std::unordered_map<RoguelikeCustomType, std::function<bool(void)>> TypeActuator = {
@@ -141,7 +149,7 @@ bool asst::RoguelikeCustomStartTaskPlugin::hijack_core_char()
     sleep(Task.get("RoguelikeCustom-HijackCoChar")->pre_delay);
 
     m_config->set_use_support(m_customs[RoguelikeCustomType::UseSupport] == "1");
-    m_config->set_use_support_min_level(std::stoi(m_customs[RoguelikeCustomType::UseSupportMinLevel]));
+    m_config->set_use_support_min_level(m_usesupportminlevel);
     m_config->set_use_nonfriend_support(m_customs[RoguelikeCustomType::UseNonfriendSupport] == "1");
     m_config->set_core_char(char_name);
     return true;

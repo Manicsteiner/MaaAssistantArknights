@@ -2336,7 +2336,7 @@ namespace MaaWpfGui.Main
             }
 
             taskParams["use_support"] = useSupport;
-            taskParams["use_support_min_level"] = useSupportMinLevel.ToString();
+            taskParams["use_support_min_level"] = useSupportMinLevel;
             taskParams["use_nonfriend_support"] = enableNonFriendSupport;
             taskParams["refresh_trader_with_dice"] = theme == "Mizuki" && refreshTraderWithDice;
 
