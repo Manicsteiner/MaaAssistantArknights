@@ -118,6 +118,7 @@
     <system:String x:Key="RoguelikeStrategyExp">Gain Experience Points, clear as many nodes as possible</system:String>
     <system:String x:Key="RoguelikeStrategyGold">Invests coins, exits after arriving at the second floor</system:String>
     <system:String x:Key="RoguelikeLastReward">Grind to obtain Hot Water Kettle or Elite II operators</system:String>
+    <system:String x:Key="RoguelikeCollapsalParadigms">Grind to get Collapsal Paradigms, only available for Sami</system:String>
     <system:String x:Key="StartingSquad">Starting Squad</system:String>
     <system:String x:Key="StartingRoles">Starting Roles</system:String>
     <system:String x:Key="StartingCoreChar">Starting Operator (single)</system:String>
