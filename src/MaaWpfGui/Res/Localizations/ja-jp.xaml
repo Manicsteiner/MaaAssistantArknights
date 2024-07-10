@@ -118,6 +118,7 @@
     <system:String x:Key="RoguelikeStrategyExp">経験値を取得し、できるだけクリア</system:String>
     <system:String x:Key="RoguelikeStrategyGold">源石錐の収集、2階到着後終了</system:String>
     <system:String x:Key="RoguelikeLastReward">序盤の報酬を得るために戦い、3階到着後終了</system:String>
+    <system:String x:Key="RoguelikeCollapsalParadigms">パラダイムロストを取得し、サーミにのみ適用</system:String>
     <system:String x:Key="StartingSquad">最初の分隊</system:String>
     <system:String x:Key="StartingRoles">最初の職業</system:String>
     <system:String x:Key="StartingCoreChar">最初のオペレーター（一人だけ）</system:String>
@@ -129,8 +130,10 @@
     <system:String x:Key="Roguelike3NewSquad2StartingFoldartal">生活重視分隊で開始、指定された啓示板を取得する</system:String>
     <system:String x:Key="Roguelike3NewSquad2StartingFoldartalTip">最大3つ書き込み、半角セミコロン;で区切る</system:String>
     <system:String x:Key="RoguelikeUseSupportUnit">「最初のオペレーター」をサポートから選択</system:String>
+    <system:String x:Key="RoguelikeUseSupportMinLevel">サポートオペレーターの最低等級制限</system:String>
     <system:String x:Key="RoguelikeUseNonFriendSupport">フレンド以外のサポートの使用を許可</system:String>
     <system:String x:Key="RoguelikeDelayAbortUntilCombatComplete">戦闘終了まえに「停止」を遅らせる</system:String>
+    <system:String x:Key="RoguelikeSkipTeamCompleteCheck">陣容の完全性チェックを放棄 予備オペレーターのみ募集時に選択可</system:String>
     <system:String x:Key="DeploymentWithPause">統合戦略/保全駐在でポーズトリックを使用します（ベータ機能のため非推奨です）</system:String>
     <system:String x:Key="AdbLiteEnabled">軽量ADBを使用(実験機能)</system:String>
     <system:String x:Key="KillAdbOnExit">終了時にADBを終了する</system:String>

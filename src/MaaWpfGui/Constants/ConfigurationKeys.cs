@@ -123,8 +123,10 @@ namespace MaaWpfGui.Constants
         public const string Roguelike3NewSquad2StartingFoldartal = "Roguelike.Roguelike3NewSquad2StartingFoldartal";
         public const string Roguelike3NewSquad2StartingFoldartals = "Roguelike.Roguelike3NewSquad2StartingFoldartals";
         public const string RoguelikeUseSupportUnit = "Roguelike.RoguelikeUseSupportUnit";
+        public const string RoguelikeUseSupportMinLevel = "Roguelike.RoguelikeUseSupportMinLevel";
         public const string RoguelikeEnableNonfriendSupport = "Roguelike.RoguelikeEnableNonfriendSupport";
         public const string RoguelikeDelayAbortUntilCombatComplete = "Roguelike.RoguelikeDelayAbortUntilCombatComplete";
+        public const string RoguelikeSkipTeamCompleteCheck = "Roguelike.RoguelikeSkipTeamCompleteCheck";
         public const string RoguelikeStartsCount = "Roguelike.StartsCount";
         public const string RoguelikeInvestmentEnabled = "Roguelike.InvestmentEnabled";
         public const string RoguelikeInvestmentEnterSecondFloor = "Roguelike.InvestmentEnterSecondFloor";

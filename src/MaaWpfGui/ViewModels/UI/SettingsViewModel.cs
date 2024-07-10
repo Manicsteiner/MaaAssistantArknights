@@ -1902,6 +1902,7 @@ namespace MaaWpfGui.ViewModels.UI
                 // new CombData { Display = "两者兼顾，投资过后退出", Value = "2" } // 弃用
                 // new CombData { Display = Localization.GetString("3"), Value = "3" },  // 开发中
                 new() { Display = LocalizationHelper.GetString("RoguelikeLastReward"), Value = "4" },
+                new() { Display = LocalizationHelper.GetString("RoguelikeCollapsalParadigm"), Value = "5" },
             ];
 
         private ObservableCollection<CombinedData> _roguelikeSquadList = new();
@@ -2183,6 +2184,21 @@ namespace MaaWpfGui.ViewModels.UI
             }
         }
 
+        private string _roguelikeUseSupportMinLevel = ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeUseSupportMinLevel, "0");
+
+        /// <summary>
+        /// Gets or sets a value to limit roguelike support unit minimun level
+        /// </summary>
+        public int RoguelikeUseSupportMinLevel
+        {
+            get => int.Parse(_roguelikeUseSupportMinLevel);
+            set
+            {
+                SetAndNotify(ref _roguelikeUseSupportMinLevel, value.ToString());
+                ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeUseSupportMinLevel, value.ToString());
+            }
+        }
+
         private bool _roguelikeEnableNonfriendSupport = Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeEnableNonfriendSupport, bool.FalseString));
 
         /// <summary>
@@ -2210,6 +2226,21 @@ namespace MaaWpfGui.ViewModels.UI
             {
                 SetAndNotify(ref _roguelikeDelayAbortUntilCombatComplete, value);
                 ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeDelayAbortUntilCombatComplete, value.ToString());
+            }
+        }
+
+        private bool _roguelikeSkipTeamCompleteCheck = bool.Parse(ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeSkipTeamCompleteCheck, false.ToString()));
+
+        /// <summary>
+        /// Gets or sets a value indicating whether team complete checking can be skipped
+        /// </summary>
+        public bool RoguelikeSkipTeamCompleteCheck
+        {
+            get => _roguelikeSkipTeamCompleteCheck;
+            set
+            {
+                SetAndNotify(ref _roguelikeSkipTeamCompleteCheck, value);
+                ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeSkipTeamCompleteCheck, value.ToString());
             }
         }
 

@@ -112,6 +112,9 @@ bool asst::RoguelikeTask::set_params(const json::value& params)
     // 是否生活队凹开局板子
     m_roguelike_config_ptr->set_start_foldartal(params.contains("start_foldartal_list"));
 
+    // 是否跳过阵容完备度检测
+    m_roguelike_config_ptr->set_recruitment_team_complete(params.get("skip_team_completeness_check", false));
+
     if (auto opt = params.find<json::array>("start_foldartal_list"); opt) {
         std::vector<std::string> list;
         for (const auto& name : *opt) {
@@ -129,12 +132,18 @@ bool asst::RoguelikeTask::set_params(const json::value& params)
     // 是否使用密文版, 非CLP_PDS模式下默认为True, CLP_PDS模式下默认为False
     m_roguelike_config_ptr->set_use_foldartal(params.get("use_foldartal", !(mode == RoguelikeMode::CLP_PDS)));
 
-    // 是否检查坍缩范式，非CLP_PDS模式下默认为False, CLP_PDS模式下默认为True
-    m_roguelike_config_ptr->set_check_clp_pds(params.get("check_collapsal_paradigms", mode == RoguelikeMode::CLP_PDS));
-    m_roguelike_config_ptr->set_double_check_clp_pds(params.get("double_check_collapsal_paradigms", mode == RoguelikeMode::CLP_PDS));
+    if (theme == RoguelikeTheme::Sami) {
+        // 是否检查坍缩范式，非CLP_PDS模式下默认为False, CLP_PDS模式下默认为True
+        m_roguelike_config_ptr->set_check_clp_pds(
+            params.get("check_collapsal_paradigms", mode == RoguelikeMode::CLP_PDS));
+        m_roguelike_config_ptr->set_double_check_clp_pds(
+            params.get("double_check_collapsal_paradigms", mode == RoguelikeMode::CLP_PDS));
 
-    const std::unordered_set<std::string>& rare_clp_pds = RoguelikeCollapsalParadigms.get_rare_clp_pds(theme);
-    m_roguelike_config_ptr->set_expected_clp_pds(params.get("expected_collapsal_paradigms", rare_clp_pds));
+        const std::unordered_set<std::string>& rare_clp_pds =
+            RoguelikeCollapsalParadigms.get_rare_clp_pds(theme);
+        m_roguelike_config_ptr->set_expected_clp_pds(
+            params.get("expected_collapsal_paradigms", rare_clp_pds));
+    }
 
     m_roguelike_config_ptr->set_invest_maximum(params.get("investments_count", INT_MAX));
     m_roguelike_config_ptr->set_invest_stop_when_full(params.get("stop_when_investment_full", false));
@@ -204,5 +213,8 @@ bool asst::RoguelikeTask::set_params(const json::value& params)
     m_custom_start_plugin_ptr->set_custom(RoguelikeCustomType::UseNonfriendSupport,
                                           params.get("use_nonfriend_support", false) ? "1"
                                                                                      : "0"); // 是否可以是非好友助战干员
+    m_custom_start_plugin_ptr->set_custom(
+        RoguelikeCustomType::UseSupportMinLevel,
+        params.get("use_support_min_level", "0")); // 助战干员最低等级限制
     return true;
 }
