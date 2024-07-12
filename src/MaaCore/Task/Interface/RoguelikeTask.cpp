@@ -73,6 +73,10 @@ bool asst::RoguelikeTask::set_params(const json::value& params)
     m_roguelike_config_ptr->set_start_with_elite_two(params.get("start_with_elite_two", false));
     m_roguelike_config_ptr->set_only_start_with_elite_two(params.get("only_start_with_elite_two", false));
 
+    // 是否跳过阵容完备度检测
+    m_roguelike_config_ptr->set_recruitment_team_complete(
+        params.get("skip_team_completeness_check", false));
+
     // –––– 萨米肉鸽专用设置 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
     if (theme == RoguelikeTheme::Sami) {
         // 是否凹开局远见密文板
@@ -178,6 +182,9 @@ bool asst::RoguelikeTask::set_params(const json::value& params)
     m_custom_start_plugin_ptr->set_custom(RoguelikeCustomType::UseNonfriendSupport,
                                           params.get("use_nonfriend_support", false) ? "1"
                                                                                      : "0"); // 是否可以是非好友助战干员
+    m_custom_start_plugin_ptr->set_custom(
+        RoguelikeCustomType::UseSupportMinLevel,
+        params.get("use_support_min_level", "0")); // 助战干员最低等级限制
     return true;
 }
 

@@ -1921,7 +1921,7 @@ namespace MaaWpfGui.ViewModels.UI
         private ObservableCollection<CombinedData> _roguelikeModeList = new();
 
         /// <summary>
-        /// Gets the list of roguelike modes.
+        /// Gets or sets the list of roguelike modes.
         /// </summary>
         public ObservableCollection<CombinedData> RoguelikeModeList
         {
@@ -1951,8 +1951,6 @@ namespace MaaWpfGui.ViewModels.UI
                 new() { Display = LocalizationHelper.GetString("OvercomingYourWeaknesses"), Value = "取长补短" },
                 new() { Display = LocalizationHelper.GetString("AsYourHeartDesires"), Value = "随心所欲" },
             ];
-
-        // public List<CombData> RoguelikeCoreCharList { get; set; }
 
         private string _roguelikeTheme = ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeTheme, "Sami");
 
@@ -2209,6 +2207,21 @@ namespace MaaWpfGui.ViewModels.UI
             }
         }
 
+        private string _roguelikeUseSupportMinLevel = ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeUseSupportMinLevel, "0");
+
+        /// <summary>
+        /// Gets or sets a value to limit roguelike support unit minimun level
+        /// </summary>
+        public int RoguelikeUseSupportMinLevel
+        {
+            get => int.Parse(_roguelikeUseSupportMinLevel);
+            set
+            {
+                SetAndNotify(ref _roguelikeUseSupportMinLevel, value.ToString());
+                ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeUseSupportMinLevel, value.ToString());
+            }
+        }
+
         private bool _roguelikeEnableNonfriendSupport = Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeEnableNonfriendSupport, bool.FalseString));
 
         /// <summary>
@@ -2236,6 +2249,21 @@ namespace MaaWpfGui.ViewModels.UI
             {
                 SetAndNotify(ref _roguelikeDelayAbortUntilCombatComplete, value);
                 ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeDelayAbortUntilCombatComplete, value.ToString());
+            }
+        }
+
+        private bool _roguelikeSkipTeamCompleteCheck = bool.Parse(ConfigurationHelper.GetValue(ConfigurationKeys.RoguelikeSkipTeamCompleteCheck, false.ToString()));
+
+        /// <summary>
+        /// Gets or sets a value indicating whether team complete checking can be skipped
+        /// </summary>
+        public bool RoguelikeSkipTeamCompleteCheck
+        {
+            get => _roguelikeSkipTeamCompleteCheck;
+            set
+            {
+                SetAndNotify(ref _roguelikeSkipTeamCompleteCheck, value);
+                ConfigurationHelper.SetValue(ConfigurationKeys.RoguelikeSkipTeamCompleteCheck, value.ToString());
             }
         }
 

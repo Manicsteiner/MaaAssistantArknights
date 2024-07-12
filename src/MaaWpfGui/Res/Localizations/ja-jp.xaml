@@ -118,7 +118,7 @@
     <system:String x:Key="RoguelikeStrategyExp">経験値を取得し、できるだけクリア</system:String>
     <system:String x:Key="RoguelikeStrategyGold">源石錐の収集、2階到着後終了</system:String>
     <system:String x:Key="RoguelikeStrategyLastReward">序盤の報酬を得るために戦い、3階到着後終了</system:String>
-    <system:String x:Key="RoguelikeStrategyCollapse">希少な崩壊パラダイムを引き起こしてみてください</system:String>
+    <system:String x:Key="RoguelikeStrategyCollapse">稀なパラダイムロストを引き起こる</system:String>
     <system:String x:Key="StartingSquad">最初の分隊</system:String>
     <system:String x:Key="StartingRoles">最初の職業</system:String>
     <system:String x:Key="StartingCoreChar">最初のオペレーター（一人だけ）</system:String>
@@ -130,8 +130,10 @@
     <system:String x:Key="Roguelike3NewSquad2StartingFoldartal">生活重視分隊で開始、指定された啓示板を取得する</system:String>
     <system:String x:Key="Roguelike3NewSquad2StartingFoldartalTip">最大3つ書き込み、半角セミコロン;で区切る</system:String>
     <system:String x:Key="RoguelikeUseSupportUnit">「最初のオペレーター」をサポートから選択</system:String>
+    <system:String x:Key="RoguelikeUseSupportMinLevel">サポートオペレーターの最低等級制限</system:String>
     <system:String x:Key="RoguelikeUseNonFriendSupport">フレンド以外のサポートの使用を許可</system:String>
     <system:String x:Key="RoguelikeDelayAbortUntilCombatComplete">戦闘終了まえに「停止」を遅らせる</system:String>
+    <system:String x:Key="RoguelikeSkipTeamCompleteCheck">陣容の完全性チェックを放棄 予備オペレーターのみ募集時に選択可</system:String>
     <system:String x:Key="DeploymentWithPause">統合戦略/保全駐在でポーズトリックを使用します（ベータ機能のため非推奨です）</system:String>
     <system:String x:Key="AdbLiteEnabled">軽量ADBを使用(実験機能)</system:String>
     <system:String x:Key="KillAdbOnExit">終了時にADBを終了する</system:String>
@@ -683,10 +685,10 @@
     <system:String x:Key="FoldartalGainOcrNextLevel">予見暗号文板:</system:String>
     <system:String x:Key="RoguelikeInvestment">投資しました: {1}(+{0})、デポジット: {2}</system:String>
     <system:String x:Key="RoguelikeSettlement">ローグライク決済: {0}\n探検する: {1} 床 {2} ステップ\n戦闘: {3} / {4} 緊急 / {5} BOSS\nリクルート: {6}\nコレクション: {7}\n困難: {8}\nスコア: {9}\n経験値: {10}, スキル: {11}</system:String>
-    <system:String x:Key="RoguelikeGainParadigm">崩壊パラダイムの深化: {0}</system:String>
-    <system:String x:Key="RoguelikeDeepenParadigm">崩壊パラダイム {0} が {1} に深化した</system:String>
-    <system:String x:Key="RoguelikeLoseParadigm">崩壊パラダイムの消退: {1}</system:String>
-    <system:String x:Key="RoguelikeWeakenParadigm">崩壊パラダイム {1} が {0} に退行した</system:String>
+    <system:String x:Key="RoguelikeGainParadigm">パラダイムロストの深化: {0}</system:String>
+    <system:String x:Key="RoguelikeDeepenParadigm">パラダイムロスト {0} が {1} に深化した</system:String>
+    <system:String x:Key="RoguelikeLoseParadigm">パラダイムロストの消退: {1}</system:String>
+    <system:String x:Key="RoguelikeWeakenParadigm">パラダイムロスト {1} が {0} に退行した</system:String>
     <system:String x:Key="CurTimes">現在の回数</system:String>
     <system:String x:Key="NoDrop">ドロップなし</system:String>
     <system:String x:Key="Drop" xml:space="preserve">ドロップ: </system:String>
