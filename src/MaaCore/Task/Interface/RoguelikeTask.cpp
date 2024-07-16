@@ -75,6 +75,9 @@ bool asst::RoguelikeTask::set_params(const json::value& params)
     m_roguelike_config_ptr->set_start_with_elite_two(params.get("start_with_elite_two", false));
     m_roguelike_config_ptr->set_only_start_with_elite_two(params.get("only_start_with_elite_two", false));
 
+    // 是否跳过阵容完备度检测
+    m_roguelike_config_ptr->set_recruitment_team_complete(params.get("skip_team_completeness_check", false));
+
     m_roguelike_config_ptr->set_invest_maximum(params.get("investments_count", INT_MAX));
     m_roguelike_config_ptr->set_invest_stop_when_full(params.get("stop_when_investment_full", false));
     // 设置层数选点策略，相关逻辑在 RoguelikeStrategyChangeTaskPlugin
@@ -206,6 +209,9 @@ void asst::RoguelikeTask::register_roguelike_plugins(const json::value& params) 
     custom_start_plugin_ptr->set_custom(RoguelikeCustomType::UseNonfriendSupport,
                                         params.get("use_nonfriend_support", false) ? "1"
                                                                                    : "0"); // 是否可以是非好友助战干员
+    custom_start_plugin_ptr->set_custom(
+        RoguelikeCustomType::UseSupportMinLevel,
+        params.get("use_support_min_level", "0")); // 助战干员最低等级限制
 
     m_roguelike_task_ptr->register_plugin<RoguelikeBattleTaskPlugin>(m_roguelike_config_ptr)
         ->set_retry_times(0)
