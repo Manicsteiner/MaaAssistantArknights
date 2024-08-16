@@ -558,6 +558,101 @@
         ],
         "roi": [0, 60, 1280, 550]
     },
+    "SS-ShoppingBegin": {
+        "algorithm": "JustReturn",
+        "next": ["SS-ShoppingReturnHome@ReturnButton", "SS-ShoppingReturnHome"]
+    },
+    "SS-ShoppingReturnHome": {
+        "baseTask": "Home",
+        "action": "DoNothing",
+        "template": [
+            "Terminal.png",
+            "TerminalDark.png",
+            "TerminalSami.png",
+            "TerminalMistCity.png",
+            "TerminalSiege.png"
+        ],
+        "next": []
+    },
+    "SS-ShoppingReturnTerminal": {
+        "baseTask": "Home",
+        "action": "ClickSelf",
+        "template": [
+            "Terminal.png",
+            "TerminalDark.png",
+            "TerminalSami.png",
+            "TerminalMistCity.png",
+            "TerminalSiege.png"
+        ],
+        "next": []
+    },
+    "SS-Shopping": {
+        "algorithm": "JustReturn",
+        "sub": ["SS-ShoppingViewItem"],
+        "next": ["SS-ShoppingCanNotBuy", "SS-ShoppingBuy"]
+    },
+    "SS-ShoppingViewItem": {
+        "algorithm": "JustReturn",
+        "next": ["SS-ShoppingSelectItem", "SS-ShopSlowlySwipeToTheRight"]
+    },
+    "SS-ShoppingSelectItem": {
+        "template": ["SS-Shopping-rare.png", "SS-Shopping-down.png", "SS-Shopping.png"],
+        "maskRange": [1, 255],
+        "action": "ClickSelf",
+        "roi": [0, 220, 1280, 500],
+        "next": ["SS-ShoppingSetMax"]
+    },
+    "SS-ShopSlowlySwipeToTheRight": {
+        "baseTask": "SlowlySwipeToTheRight",
+        "specificRect": [600, 220, 60, 60],
+        "rectMove": [200, 220, 60, 60],
+        "next": ["SS-ShoppingViewItem#next"]
+    },
+    "SS-ShoppingSetMax": {
+        "action": "ClickRect",
+        "algorithm": "JustReturn",
+        "Doc": "\"isAscii\": true, \"text\": [\"Max\"]]",
+        "specificRect": [1041, 407, 55, 29]
+    },
+    "SS-ShoppingCanNotBuy": {
+        "action": "DoNothing",
+        "algorithm": "OcrDetect",
+        "fullMatch": true,
+        "isAscii": true,
+        "text": ["0"],
+        "roi": [841, 357, 155, 129],
+        "sub": ["SS-ShoppingBuy"],
+        "next": ["SS-ShoppingEnd"]
+    },
+    "SS-ShoppingBuy": {
+        "action": "ClickSelf",
+        "algorithm": "OcrDetect",
+        "text": ["購入", "购买", "购入"],
+        "roi": [779, 505, 280, 148],
+        "onErrorNext": ["Stop"],
+        "next": ["SS-ShoppingCanNotBuy2", "SS-ShoppingBuyClose"]
+    },
+    "SS-ShoppingCanNotBuy2": {
+        "algorithm": "OcrDetect",
+        "reduceOtherTimes": ["Roguelike@StageTraderInvestConfirm"],
+        "text": ["足りません", "当前", "上限"],
+        "roi": [982, 28, 298, 289],
+        "next": ["SS-ShoppingEnd"]
+    },
+    "SS-ShoppingBuyClose": {
+        "template": "SS-ShoppingBuyClose.png",
+        "action": "ClickSelf",
+        "roi": [557, 555, 168, 164],
+        "next": ["SS-Shopping#next"]
+    },
+    "SS-ShoppingEnd": {
+        "algorithm": "JustReturn",
+        "next": ["Stop"]
+    },
+    "CurrentEvent-ShoppingBegin": {
+        "algorithm": "JustReturn",
+        "next": ["HS-ShoppingBegin"]
+    },
     "BP-5": {
         "algorithm": "JustReturn",
         "sub": ["BP-OpenOpt"],
@@ -857,31 +952,54 @@
     "CR-6@SideStoryStage": {
         "text": ["CR-6"]
     },
+    "HSToShop": {
+        "algorithm": "OcrDetect",
+        "action": "ClickSelf",
+        "text": ["神農", "農日", "日市"],
+        "preDelay": 1000,
+        "roi": [123, 403, 208, 134],
+        "next": ["#self", "HSAtShop"]
+    },
+    "HSAtShop": {
+        "algorithm": "OcrDetect",
+        "action": "DoNothing",
+        "text": ["神農", "農日", "日市"],
+        "preDelay": 1000,
+        "roi": [70, 130, 240, 80]
+    },
+    "HS-ShoppingBegin": {
+        "baseTask": "SS-ShoppingBegin",
+        "sub": ["SS-ShoppingBegin#next", "SS-ShoppingReturnTerminal", "HS-Open", "HSToShop"],
+        "next": ["HS-Shopping"]
+    },
+    "HS-Shopping": {
+        "algorithm": "JustReturn",
+        "sub": ["SS-Shopping", "SS-Shopping@SS-ShopSlowlySwipeToTheRight"]
+    },
     "HS-9": {
         "algorithm": "JustReturn",
-        "sub": ["HS-OpenOcr"],
+        "sub": ["HS-OpenOcr", "HSChapterToHS"],
         "next": ["HS-9@SideStoryStage", "HS-9@SwipeToStage"]
     },
     "HS-8": {
         "algorithm": "JustReturn",
-        "sub": ["HS-OpenOcr"],
+        "sub": ["HS-OpenOcr", "HSChapterToHS"],
         "next": ["HS-8@SideStoryStage", "HS-8@SwipeToStage"]
     },
     "HS-7": {
         "algorithm": "JustReturn",
-        "sub": ["HS-OpenOcr"],
+        "sub": ["HS-OpenOcr", "HSChapterToHS"],
         "next": ["HS-7@SideStoryStage", "HS-7@SwipeToStage"]
     },
     "HS-5": {
         "algorithm": "JustReturn",
-        "sub": ["HS-OpenOcr"],
+        "sub": ["HS-OpenOcr", "HSChapterToHS"],
         "next": ["HS-5@SideStoryStage", "HS-5@SwipeToStage"]
     },
     "HS-OpenOcr": {
         "baseTask": "SS-OpenOcr",
         "text": ["怀黍离", "荒城", "核心"],
-        "ocrReplace": [["怀.*离", "怀黍离"]],
-        "next": ["HSChapterToHS"]
+        "ocrReplace": [["怀.*离", "怀黍离"]]
     },
     "HSChapterToHS": {
         "algorithm": "OcrDetect",
