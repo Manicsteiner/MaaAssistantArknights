@@ -1427,6 +1427,11 @@
     "RecruitSupportConfirm": {
         "text": ["サ.*ート", "招集", "召集"]
     },
+    "UseSupportUnit-Confirm": {
+        "doc": "Roguelike recruit and common battle recruit are not same for current version, temp fix till MAY-2025 I PORTATORI DEI VELLUTI",
+        "text": ["確定"],
+        "roi": [490, 565, 300, 65]
+    },
     "RoguelikeChooseSupportBtnOcr": {
         "text": ["サポー"]
     },

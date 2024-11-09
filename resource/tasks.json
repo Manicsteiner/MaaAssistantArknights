@@ -6094,6 +6094,10 @@
         "action": "ClickSelf",
         "next": ["UseSupportUnit-Role@NextAfterLoadingText", "UseSupportUnit-Role#next"]
     },
+    "UseSupportUnit-SelectSkill-0": {
+        "baseTask": "UseSupportUnit-Confirm",
+        "action": "DoNothing"
+    },
     "UseSupportUnit-SelectSkill-1": {
         "template": "UseSupportUnit-SelectSkill.png",
         "action": "ClickSelf",
