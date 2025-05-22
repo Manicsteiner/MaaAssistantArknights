@@ -20,7 +20,8 @@ asst::CopilotTask::CopilotTask(const AsstCallback& callback, Assistant* inst) :
     m_change_difficulty_task_ptr(std::make_shared<ProcessTask>(callback, inst, TaskType)),
     m_formation_task_ptr(std::make_shared<BattleFormationTask>(callback, inst, TaskType)),
     m_battle_task_ptr(std::make_shared<BattleProcessTask>(callback, inst, TaskType)),
-    m_stop_task_ptr(std::make_shared<ProcessTask>(callback, inst, TaskType))
+    m_stop_task_ptr(std::make_shared<ProcessTask>(callback, inst, TaskType)),
+    m_start_1_task_ptr(std::make_shared<ProcessTask>(callback, inst, TaskType))
 {
     LogTraceFunction;
 
@@ -34,9 +35,9 @@ asst::CopilotTask::CopilotTask(const AsstCallback& callback, Assistant* inst) :
     m_change_difficulty_task_ptr->set_tasks({ "RaidConfirm", "ChangeToRaidDifficulty" });
     m_subtasks.emplace_back(m_change_difficulty_task_ptr);
 
-    auto start_1_tp = std::make_shared<ProcessTask>(callback, inst, TaskType);
-    start_1_tp->set_tasks({ "BattleStartPre" }).set_retry_times(3).set_ignore_error(true);
-    m_subtasks.emplace_back(start_1_tp);
+    // auto start_1_tp = std::make_shared<ProcessTask>(callback, inst, TaskType);
+    m_start_1_task_ptr->set_tasks({ "BattleStartPre" }).set_retry_times(3).set_ignore_error(true);
+    m_subtasks.emplace_back(m_start_1_task_ptr);
 
     m_medicine_task_ptr = std::make_shared<ProcessTask>(callback, inst, TaskType);
     m_medicine_task_ptr->set_tasks({ "BattleStartPre@UseMedicine", "BattleStartPre@BattleQuickFormation" })
@@ -126,6 +127,11 @@ bool asst::CopilotTask::set_params(const json::value& params)
         Log.error("Not support stage");
         return false;
     }
+
+    bool is_paradox =
+        m_stage_name.find("mem_") != std::string::npos || m_stage_name.find("level_memory_") != std::string::npos;
+    m_start_1_task_ptr->set_enable(!is_paradox);
+    m_medicine_task_ptr->set_enable(!is_paradox);
 
     if (!navigate_name.empty()) {
         Task.get<OcrTaskInfo>(navigate_name + "@Copilot@ClickStageName")->text = { navigate_name };
