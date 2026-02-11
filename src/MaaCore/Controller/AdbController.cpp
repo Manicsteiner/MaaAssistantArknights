@@ -661,6 +661,25 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             }
         }
 #endif
+        if (m_avd_extras.inited()) {
+            start_time = steady_clock::now();
+            if (m_avd_extras.screencap()) {
+                auto duration = duration_cast<milliseconds>(steady_clock::now() - start_time);
+                if (duration < min_cost) {
+                    m_adb.screencap_method = AdbProperty::ScreencapMethod::AVDExtras;
+                    m_inited = true;
+                    min_cost = duration;
+                }
+                Log.info("AVDExtras cost", duration.count(), "ms");
+                all_methods_cost.emplace_back(
+                    AdbProperty::ScreencapMethod::AVDExtras,
+                    std::to_string(duration.count()));
+            }
+            else {
+                Log.info("AVDExtras is not supported");
+                all_methods_cost.emplace_back(AdbProperty::ScreencapMethod::AVDExtras, "???");
+            }
+        }
 
         static const std::unordered_map<AdbProperty::ScreencapMethod, std::string> MethodName = {
             { AdbProperty::ScreencapMethod::UnknownYet, "UnknownYet" },
@@ -671,6 +690,7 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             { AdbProperty::ScreencapMethod::MumuExtras, "MumuExtras" },
             { AdbProperty::ScreencapMethod::LDExtras, "LDExtras" },
 #endif
+            { AdbProperty::ScreencapMethod::AVDExtras, "AVDExtras" },
         };
         Log.info("The fastest way is", MethodName.at(m_adb.screencap_method), ", cost:", min_cost.count(), "ms");
         if (m_adb.screencap_method != AdbProperty::ScreencapMethod::UnknownYet) {
@@ -738,6 +758,20 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             }
         } break;
 #endif
+        case AdbProperty::ScreencapMethod::AVDExtras: {
+            auto img_opt = m_avd_extras.screencap();
+            screencap_ret = img_opt.has_value();
+
+            if (!screencap_ret && allow_reconnect) {
+                m_avd_extras.reload();
+                img_opt = m_avd_extras.screencap();
+                screencap_ret = img_opt.has_value();
+            }
+
+            if (screencap_ret) {
+                image_payload = img_opt.value();
+            }
+        } break;
         default:
             break;
         }
@@ -923,38 +957,41 @@ bool asst::AdbController::connect(const std::string& adb_path, const std::string
             }
         }
 
-        // 如果不包含 `:` 且需要连接，connect 命令也不会成功
-        if (address.find(':') == std::string::npos && need_connect) {
-            json::value info = get_info_json() | json::object {
-                { "what", "ConnectFailed" },
-                { "why", "Address does not contain ':' and no devices found" },
-            };
-            callback(AsstMsg::ConnectionInfo, info);
-            return false;
-        }
-
-        // TODO: adb lite server 尚未实现，第一次连接需要执行一次 adb.exe 启动 daemon
+        // 设置配置 connect、release 命令，即使这里不连接，后续也会需要用到
         m_adb.connect = cmd_replace(adb_cfg.connect);
         m_adb.release = cmd_replace(adb_cfg.release);
-        auto connect_ret = call_command(m_adb.connect, 60LL * 1000, false /* adb 连接时不允许重试 */);
-        bool is_connect_success = false;
-        if (connect_ret) {
-            auto& connect_str = connect_ret.value();
-            // 检查连接字符串是否包含 "connected"
-            is_connect_success = connect_str.find("connected") != std::string::npos;
-            // NOTE:这玩意啥都没干，有什么用吗？
-            if (connect_str.find("daemon started successfully") != std::string::npos &&
-                connect_str.find("daemon still not running") == std::string::npos) {
+        if (need_connect) {
+            // 如果不包含 `:` 且需要连接，connect 命令也不会成功
+            if (address.find(':') == std::string::npos) {
+                json::value info = get_info_json() | json::object {
+                    { "what", "ConnectFailed" },
+                    { "why", "Cannot connect: address appears to be serial number but device not found" },
+                };
+                callback(AsstMsg::ConnectionInfo, info);
+                return false;
             }
-        }
 
-        if (!is_connect_success && need_connect) {
-            json::value info = get_info_json() | json::object {
-                { "what", "ConnectFailed" },
-                { "why", "Connection command failed to exec" },
-            };
-            callback(AsstMsg::ConnectionInfo, info);
-            return false;
+            auto connect_ret = call_command(m_adb.connect, 60LL * 1000, false /* adb 连接时不允许重试 */);
+            if (connect_ret) {
+                auto& connect_str = connect_ret.value();
+                // 检查连接字符串是否包含 "connected"
+                if (connect_str.find("connected") == std::string::npos) {
+                    json::value info = get_info_json() | json::object {
+                        { "what", "ConnectFailed" },
+                        { "why", "Connection command did not report \"connected\"" },
+                    };
+                    callback(AsstMsg::ConnectionInfo, info);
+                    return false;
+                }
+            }
+            else {
+                json::value info = get_info_json() | json::object {
+                    { "what", "ConnectFailed" },
+                    { "why", "Connection command failed to exec" },
+                };
+                callback(AsstMsg::ConnectionInfo, info);
+                return false;
+            }
         }
     }
 
@@ -1159,6 +1196,11 @@ bool asst::AdbController::connect(const std::string& adb_path, const std::string
     }
     else if (config == "LDPlayer") {
         init_ld_extras(adb_cfg, address);
+    }
+    else if (config == "AVD") {
+        if (!adb_cfg.extras.empty()) {
+            m_avd_extras.init(cmd_replace(adb_cfg.emu_webrtc_start), cmd_replace(adb_cfg.emu_webrtc_stop));
+        }
     }
 
     if (need_exit()) {
