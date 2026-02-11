@@ -310,7 +310,6 @@ jobs:
 
       - name: Clean up files
         run: |
-          mv -vf assets/changelog/* .
           cd assets
           # find . -type f | xargs mv -fvt .
           find . -type f | while read f; do mv -fvt . $f; done
