@@ -979,11 +979,14 @@ private:
         // Windows: 设置未处理异常过滤器
         SetUnhandledExceptionFilter(unhandled_exception_filter);
 #endif
-
+// android not need this
+#ifndef __ANDROID__
         std::signal(SIGSEGV, signal_handler);
         std::signal(SIGABRT, signal_handler);
         std::signal(SIGFPE, signal_handler);
         std::signal(SIGILL, signal_handler);
+#endif
+
 #ifdef ASST_DEBUG
         const auto& path = UserDir.get() / "debug" / "crash.log";
         if (std::filesystem::exists(path)) {
