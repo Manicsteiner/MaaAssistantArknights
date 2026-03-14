@@ -165,6 +165,11 @@ public class AsstProxy
         AsstSetConnectionExtras("LDPlayer", extras);
     }
 
+    private static void AsstSetConnectionExtrasAVD(string extras)
+    {
+        AsstSetConnectionExtras("AVD", extras);
+    }
+
     private static unsafe AsstTaskId AsstAppendTask(AsstHandle handle, string type, string taskParams)
     {
         fixed (byte* ptr1 = EncodeNullTerminatedUtf8(type),
@@ -907,6 +912,25 @@ public class AsstProxy
                             }
 
                             break;
+
+                        case "AVD":
+                            if (!SettingsViewModel.ConnectSettings.AvdExtras.Enable)
+                            {
+                                break;
+                    }
+
+                            if (method != "AVDExtras")
+                            {
+                                Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("AVDExtrasNotEnabledMessage"), UiLogColor.Error);
+                                Instances.CopilotViewModel.AddLog(LocalizationHelper.GetString("AVDExtrasNotEnabledMessage"), UiLogColor.Error, showTime: false);
+                                needToStop = true;
+                            }
+                            else if (timeCost < 100)
+                            {
+                                color = UiLogColor.AVDSpecialScreenshot;
+                            }
+
+                                break;
                     }
 
                     fastestScreencapStringBuilder.Insert(0, string.Format(LocalizationHelper.GetString("FastestWayToScreencap"), costString, method));
@@ -2595,6 +2619,13 @@ public class AsstProxy
 
             case "LDPlayer":
                 AsstSetConnectionExtrasLdPlayer(SettingsViewModel.ConnectSettings.LdPlayerExtras.Config);
+                break;
+
+            case "AVD":
+                if (Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.AVDExtrasEnabled, bool.FalseString))) {
+                    // 任意非空对象即可触发
+                    AsstSetConnectionExtrasAVD("{\"mode\": \"shm\"}");
+                }
                 break;
         }
 
