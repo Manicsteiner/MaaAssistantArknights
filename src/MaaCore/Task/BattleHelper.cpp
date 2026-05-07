@@ -589,7 +589,7 @@ bool asst::BattleHelper::use_skill(const Point& loc, bool keep_waiting)
 {
     LogTraceFunction;
 
-    return click_oper_on_battlefield(loc) && click_skill(keep_waiting) && m_inst_helper.sleep(200);
+    return click_oper_on_battlefield(loc) && click_skill(keep_waiting) && m_inst_helper.sleep(250);
 }
 
 bool asst::BattleHelper::check_pause_button(const cv::Mat& reusable)
@@ -677,7 +677,7 @@ bool asst::BattleHelper::wait_until_start(bool weak)
 {
     LogTraceFunction;
 
-    constexpr auto timeout_duration = std::chrono::minutes(1);
+    constexpr auto timeout_duration = std::chrono::minutes(2);
     const auto start_time = std::chrono::steady_clock::now();
 
     cv::Mat image = m_inst_helper.ctrler()->get_image();
