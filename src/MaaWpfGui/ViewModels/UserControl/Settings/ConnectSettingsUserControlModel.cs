@@ -753,7 +753,34 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
 
     public LdPlayerConnectionExtras LdPlayerExtras { get; set; } = new();
 
-    private bool _retryOnDisconnected = ConfigurationHelper.GetValue(ConfigurationKeys.RetryOnAdbDisconnected, false);
+    public class AvdConnectionExtras : PropertyChangedBase
+    {
+        private bool _enable = Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.AVDExtrasEnabled, bool.FalseString));
+
+        public bool Enable
+        {
+            get => _enable;
+            set {
+                if (!SetAndNotify(ref _enable, value))
+                {
+                    return;
+                }
+
+                if (value)
+                {
+                    // AutoDetectEmulatorPath();
+                    // try if avd exists
+                }
+
+                Instances.AsstProxy.Connected = false;
+                ConfigurationHelper.SetValue(ConfigurationKeys.AVDExtrasEnabled, value.ToString());
+            }
+        }
+    }
+
+    public AvdConnectionExtras AvdExtras { get; set; } = new();
+
+    private bool _retryOnDisconnected = Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.RetryOnAdbDisconnected, bool.FalseString));
 
     /// <summary>
     /// Gets or sets a value indicating whether to retry task after ADB disconnected.
@@ -1082,6 +1109,15 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
                     TestLinkInfo = $"{LocalizationHelper.GetString("LdExtrasNotEnabledMessage")}\n{ScreencapTestCost}";
                     return;
                 }
+
+                break;
+
+            case "AVD":
+                if (AvdExtras.Enable && ScreencapMethod != "AVDExtras")
+                {
+                    TestLinkInfo = $"{LocalizationHelper.GetString("AVDExtrasNotEnabledMessage")}\n{ScreencapTestCost}";
+                    return;
+        }
 
                 break;
         }
