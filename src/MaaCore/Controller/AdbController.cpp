@@ -715,6 +715,27 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             }
         }
 #endif
+#ifndef __ANDROID__
+        if (m_avd_extras.inited()) {
+            start_time = steady_clock::now();
+            if (m_avd_extras.screencap()) {
+                auto duration = duration_cast<milliseconds>(steady_clock::now() - start_time);
+                if (duration < min_cost) {
+                    m_adb.screencap_method = AdbProperty::ScreencapMethod::AVDExtras;
+                    m_inited = true;
+                    min_cost = duration;
+                }
+                Log.info("AVDExtras cost", duration.count(), "ms");
+                all_methods_cost.emplace_back(
+                    AdbProperty::ScreencapMethod::AVDExtras,
+                    std::to_string(duration.count()));
+            }
+            else {
+                Log.info("AVDExtras is not supported");
+                all_methods_cost.emplace_back(AdbProperty::ScreencapMethod::AVDExtras, "???");
+            }
+        }
+#endif // __ANDROID__
 
         static const std::unordered_map<AdbProperty::ScreencapMethod, std::string> MethodName = {
             { AdbProperty::ScreencapMethod::UnknownYet, "UnknownYet" },
@@ -725,6 +746,9 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             { AdbProperty::ScreencapMethod::MumuExtras, "MumuExtras" },
             { AdbProperty::ScreencapMethod::LDExtras, "LDExtras" },
 #endif
+#ifndef __ANDROID__
+            { AdbProperty::ScreencapMethod::AVDExtras, "AVDExtras" },
+#endif // __ANDROID__
         };
         Log.info("The fastest way is", MethodName.at(m_adb.screencap_method), ", cost:", min_cost.count(), "ms");
         if (m_adb.screencap_method != AdbProperty::ScreencapMethod::UnknownYet) {
@@ -792,6 +816,22 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             }
         } break;
 #endif
+#ifndef __ANDROID__
+        case AdbProperty::ScreencapMethod::AVDExtras: {
+            auto img_opt = m_avd_extras.screencap();
+            screencap_ret = img_opt.has_value();
+
+            if (!screencap_ret && allow_reconnect) {
+                m_avd_extras.reload();
+                img_opt = m_avd_extras.screencap();
+                screencap_ret = img_opt.has_value();
+            }
+
+            if (screencap_ret) {
+                image_payload = img_opt.value();
+            }
+        } break;
+#endif // __ANDROID__
         default:
             break;
         }
@@ -969,6 +1009,17 @@ bool asst::AdbController::connect(const std::string& adb_path, const std::string
             }
         }
 
+        // 如果不包含 `:` 且需要连接，connect 命令也不会成功
+        if (address.find(':') == std::string::npos && need_connect) {
+            json::value info = get_info_json() | json::object {
+                { "what", "ConnectFailed" },
+                { "why", "Address does not contain ':' and no devices found" },
+            };
+            callback(AsstMsg::ConnectionInfo, info);
+            return false;
+        }
+
+        // TODO: adb lite server 尚未实现，第一次连接需要执行一次 adb.exe 启动 daemon
         // 设置配置 connect、release 命令，即使这里不连接，后续也会需要用到
         m_adb.connect = m_conn_ctx.replace_cmd(adb_cfg.connect);
         m_adb.release = m_conn_ctx.replace_cmd(adb_cfg.release);
@@ -1244,6 +1295,17 @@ bool asst::AdbController::connect(const std::string& adb_path, const std::string
     }
     else if (config == "LDPlayer") {
         init_ld_extras(adb_cfg, address);
+    }
+    else if (config == "AVD") {
+        if (!adb_cfg.extras.empty()) {
+#ifdef __ANDROID__
+            Log.error("MaaCore is not allowed using AVDExtras with ANDROID");
+#else
+            m_avd_extras.init(
+                m_conn_ctx.replace_cmd(adb_cfg.emu_webrtc_start),
+                m_conn_ctx.replace_cmd(adb_cfg.emu_webrtc_stop));
+#endif // __ANDROID__
+        }
     }
     if (need_exit()) {
         return false;
