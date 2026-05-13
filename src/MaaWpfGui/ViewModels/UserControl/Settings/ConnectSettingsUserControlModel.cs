@@ -560,6 +560,15 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
                 }
 
                 break;
+
+            case "AVD":
+                if (AvdExtras.Enable && ScreencapMethod != "AVDExtras")
+                {
+                    TestLinkInfo = $"{LocalizationHelper.GetString("AVDExtrasNotEnabledMessage")}\n{ScreencapTestCost}";
+                    return;
+        }
+
+                break;
         }
 
         TestLinkInfo = ScreencapTestCost;
