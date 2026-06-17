@@ -488,3 +488,7 @@ install-*
 # CMake user presets
 CMakeUserPresets.json
 .ace-tool/
+
+# ncnn
+*.ncnn.bin
+*.ncnn.param
