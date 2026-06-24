@@ -196,7 +196,9 @@
     "13@EnterEpisodeNew": {},
     "14@EnterEpisodeNew": {},
     "15@EnterEpisodeNew": {},
-    "16@EnterEpisodeNew": {},
+    "16@EnterEpisodeNew": {
+        "next": ["EnterEpisodeNew-Click"]
+    },
     "17@EnterEpisodeNew": {},
     "EnterEpisodeNew-Click": {
         "algorithm": "OcrDetect",
