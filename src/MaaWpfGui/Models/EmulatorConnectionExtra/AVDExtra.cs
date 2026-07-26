@@ -36,6 +36,11 @@ public class AVDExtra() : ExtraConfig, IJsonOnDeserialized
         _isEnabled = isEnabled;
     }
 
+    public void OnDeserialized()
+    {
+        // _emulatorPath = Directory.Exists(_emulatorPath) ? _emulatorPath : string.Empty;
+    }
+
     [JsonInclude]
     [JsonPropertyName("IsEnabled")]
     private bool _isEnabled;
@@ -50,12 +55,11 @@ public class AVDExtra() : ExtraConfig, IJsonOnDeserialized
                 return;
             }
 
-            if (value)
-            {
-                //DO NOTHING
-                //AutoDetectEmulatorPath();
-            }
-
+            // if (value)
+            // {
+            //    //DO NOTHING
+            //    //AutoDetectEmulatorPath();
+            // }
             Instances.AsstProxy.Connected = false;
         }
     }
@@ -69,23 +73,13 @@ public class AVDExtra() : ExtraConfig, IJsonOnDeserialized
                 return Newtonsoft.Json.JsonConvert.SerializeObject(new JObject());
             }
 
-            int index;
-            if (ManualSetIndex)
-            {
-                index = InstanceIndex;
-            }
-            else
-            {
-                index = GetEmulatorIndex(SettingsViewModel.ConnectSettings.ConnectAddress);
-            }
-
             var configObject = new JObject {
-                ["path"] = EmulatorPath,
-                ["index"] = index,
-                ["pid"] = GetEmulatorPid(index),
+                ["mode"] = "shm",
             };
 
             return Newtonsoft.Json.JsonConvert.SerializeObject(configObject);
+
+            // return Newtonsoft.Json.JsonConvert.SerializeObject(new JObject());
         }
     }
 }

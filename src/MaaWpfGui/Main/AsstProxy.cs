@@ -950,8 +950,8 @@ public class AsstProxy
 
                             break;
 
-                        case "AVD":
-                            if (!SettingsViewModel.ConnectSettings.AvdExtras.Enable)
+                        case ConnectConfig.AVD:
+                            if (SettingsViewModel.ConnectSettings.ExtraConfig is not AVDExtra avdExtra || !avdExtra.Enable)
                             {
                                 break;
                             }
@@ -2650,10 +2650,10 @@ public class AsstProxy
         else if (ConnectSettingsUserControlModel.Instance.ExtraConfig is LDPlayerExtra ldPlayer)
         {
             AsstSetConnectionExtrasLdPlayer(ldPlayer.Config);
-		}
-		else if (ConnectSettingsUserControlModel.Instance.ExtraConfig is AVDExtra avdextra)
-		{
-			AsstSetConnectionExtrasAVD(avdextra.Config);
+        }
+        else if (ConnectSettingsUserControlModel.Instance.ExtraConfig is AVDExtra avdExtra)
+        {
+            AsstSetConnectionExtrasAVD(avdExtra.Config);
         }
 
         switch (SettingsViewModel.ConnectSettings.ConnectConfig)

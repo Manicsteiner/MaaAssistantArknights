@@ -247,7 +247,7 @@
                                 <CheckBox
                                     Margin="10"
                                     HorizontalAlignment="Center"
-                                    Content="{DynamicResource AvdExtrasEnabled}"
+                                    Content="{DynamicResource AVDExtrasEnabled}"
                                     IsChecked="{Binding Enable}" />
                             </StackPanel>
                         </DataTemplate>
