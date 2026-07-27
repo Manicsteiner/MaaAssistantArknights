@@ -834,6 +834,11 @@ public class ConfigConverter
                     ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.LDPlayer = extra;
                 }
                 {
+                    var extra = new AVDExtra(
+                        ConfigurationHelper.GetValue(ConfigurationKeys.LdPlayerExtrasEnabled, false));
+                    ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.AVDExtra = extra;
+                }
+                {
                     var extra = new Win32Extra(
                          ConfigurationHelper.GetValue(ConfigurationKeys.AttachWindowScreencapMethod, AsstWin32ScreencapMethod.FramePool),
                          ConfigurationHelper.GetValue(ConfigurationKeys.AttachWindowMouseMethod, AsstWin32InputMethod.SendMessageWithCursorPos),

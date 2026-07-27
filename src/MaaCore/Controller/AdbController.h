@@ -9,7 +9,9 @@
 #include <random>
 
 #include "Platform/PlatformFactory.h"
-
+#ifndef __ANDROID__
+#include "AVDExtras.h"
+#endif // __ANDROID__
 #include "Common/AsstMsg.h"
 #include "Config/GeneralConfig.h"
 #include "InstHelper.h"
@@ -215,6 +217,9 @@ protected:
             MumuExtras,
             LDExtras,
 #endif
+#ifndef __ANDROID__
+            AVDExtras,
+#endif // __ANDROID__
         } screencap_method = ScreencapMethod::UnknownYet;
     } m_adb;
 
@@ -238,5 +243,8 @@ protected:
     MumuExtras m_mumu_extras;
     LDExtras m_ld_extras;
 #endif
+#ifndef __ANDROID__
+    AVDExtras m_avd_extras;
+#endif // __ANDROID__
 };
 } // namespace asst
