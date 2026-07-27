@@ -167,6 +167,11 @@ public class AsstProxy
         AsstSetConnectionExtras("LDPlayer", extras);
     }
 
+    private static void AsstSetConnectionExtrasAVD(string extras)
+    {
+        AsstSetConnectionExtras("AVD", extras);
+    }
+
     private static unsafe AsstTaskId AsstAppendTask(AsstHandle handle, string type, string taskParams)
     {
         fixed (byte* ptr1 = EncodeNullTerminatedUtf8(type),
@@ -1016,6 +1021,25 @@ public class AsstProxy
                             else if (timeCost < 100)
                             {
                                 color = UiLogColor.LdSpecialScreenshot;
+                            }
+
+                            break;
+
+                        case ConnectConfig.AVD:
+                            if (SettingsViewModel.ConnectSettings.ExtraConfig is not AVDExtra avdExtra || !avdExtra.Enable)
+                            {
+                                break;
+                            }
+
+                            if (method is not "AVDExtras" and not "MaaAdbControlUnit")
+                            {
+                                Instances.TaskQueueViewModel.AddLog(LocalizationHelper.GetString("AVDExtrasNotEnabledMessage"), UiLogColor.Error);
+                                Instances.CopilotViewModel.AddLog(LocalizationHelper.GetString("AVDExtrasNotEnabledMessage"), UiLogColor.Error, showTime: false);
+                                needToStop = true;
+                            }
+                            else if (timeCost < 100)
+                            {
+                                color = UiLogColor.AVDSpecialScreenshot;
                             }
 
                             break;
@@ -2736,6 +2760,10 @@ public class AsstProxy
         else if (ConnectSettingsUserControlModel.Instance.ExtraConfig is LDPlayerExtra ldPlayer)
         {
             AsstSetConnectionExtrasLdPlayer(ldPlayer.Config);
+        }
+        else if (ConnectSettingsUserControlModel.Instance.ExtraConfig is AVDExtra avdExtra)
+        {
+            AsstSetConnectionExtrasAVD(avdExtra.Config);
         }
 
         switch (SettingsViewModel.ConnectSettings.ConnectConfig)
