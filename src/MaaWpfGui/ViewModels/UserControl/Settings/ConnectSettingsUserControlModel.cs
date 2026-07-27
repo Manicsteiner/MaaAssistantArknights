@@ -242,6 +242,7 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
     public ExtraConfig? ExtraConfig => ConnectConfig switch {
         ConnectConfig.LDPlayer => ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.LDPlayer,
         ConnectConfig.MuMuEmulator12 => ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.MuMuEmulator12,
+        ConnectConfig.AVD => ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.AVDExtra,
         ConnectConfig.PC => ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.Win32Extra,
         _ => null,
     };
@@ -575,6 +576,15 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
                         ? LocalizationHelper.GetString("LdEmulatorPathEmptyError")
                         : LocalizationHelper.GetString("LdExtrasNotEnabledMessage");
                     TestLinkInfo = $"{ldExtrasMsg}\n{ScreencapTestCost}";
+                    return;
+                }
+
+                break;
+
+            case ConnectConfig.AVD:
+                if (ExtraConfig is AVDExtra avdExtra && avdExtra.Enable && ScreencapMethod != "AVDExtras")
+                {
+                    TestLinkInfo = $"{LocalizationHelper.GetString("AVDExtrasNotEnabledMessage")}\n{ScreencapTestCost}";
                     return;
                 }
 
