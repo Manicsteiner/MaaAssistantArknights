@@ -369,8 +369,20 @@ bool asst::BattleProcessTask::wait_condition(const Action& action)
     };
     auto do_strategy_and_update_image = [&]() {
         do_strategic_action(image);
+
+        thread_local auto prev_frame_time = std::chrono::steady_clock::time_point {};
+        static const auto min_frame_interval =
+            std::chrono::milliseconds(Config.get_options().copilot_fight_screencap_interval / 2);
+        if (const auto now = std::chrono::steady_clock::now(); prev_frame_time > now - min_frame_interval)
+            [[unlikely]] {
+            Log.debug("Sleeping for framerate limit");
+            std::this_thread::sleep_for(min_frame_interval - (now - prev_frame_time));
+        }
+
         image_prev = std::move(image);
         image = ctrler()->get_image();
+
+        prev_frame_time = std::chrono::steady_clock::now();
     };
 
     if (action.cost_changes != 0) {
