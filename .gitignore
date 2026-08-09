@@ -494,3 +494,7 @@ CMakeUserPresets.json
 
 # mimosa security scan plugin
 /.mimosa
+
+# ncnn
+*.ncnn.bin
+*.ncnn.param
