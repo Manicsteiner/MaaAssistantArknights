@@ -43,6 +43,9 @@ internal static partial class PendingUpdateApplier
     [GeneratedRegex(@"^MAA-(?<version>v.+?)-win-(?<arch>x64|arm64)\.zip$", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant)]
     private static partial Regex FullPackageNameRegex();
 
+    [GeneratedRegex(@"^FakeOTA-(?<version>v.+?)-win-(?<arch>x64|arm64)\.zip$", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant)]
+    private static partial Regex FakeOtaPackageNameRegex();
+
     private static readonly HashSet<string> s_controlFiles = new(StringComparer.OrdinalIgnoreCase)
     {
         "removelist.txt",
@@ -248,6 +251,32 @@ internal static partial class PendingUpdateApplier
             }
 
             return new(PackageInspectionStatus.OtaSupported, sourceVersion, targetVersion);
+        }
+
+        // 2.5 - FakeOTA-vX.X.X-win-x64.zip
+        Match fakeOtaMatch = FakeOtaPackageNameRegex().Match(fileName);
+        if (fakeOtaMatch.Success)
+        {
+            string targetVersion = fullPackageMatch.Groups["version"].Value;
+            string packageArchitecture = fullPackageMatch.Groups["arch"].Value;
+            bool architectureMatched = string.Equals(normalizedArchitecture, packageArchitecture, StringComparison.OrdinalIgnoreCase);
+            bool isUpgradeTarget = string.Equals(currentVersion, targetVersion);
+
+            _logger.Information(
+                "Dropped package matched full package pattern: targetVersion={TargetVersion}, packageArchitecture={PackageArchitecture}",
+                targetVersion,
+                packageArchitecture);
+
+            if (!architectureMatched || !isUpgradeTarget)
+            {
+                _logger.Warning(
+                    "Dropped full package rejected: architectureMatched={ArchitectureMatched}, isUpgradeTarget={IsUpgradeTarget}",
+                    architectureMatched,
+                    isUpgradeTarget);
+                return new(PackageInspectionStatus.OtaRejected, currentVersion, targetVersion);
+            }
+
+            return new(PackageInspectionStatus.OtaSupported, currentVersion, targetVersion);
         }
 
         // ③ 都不匹配（资源包或无关文件），交给调用方决定后续处理
