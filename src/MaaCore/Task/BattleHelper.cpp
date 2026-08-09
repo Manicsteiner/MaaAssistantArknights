@@ -627,7 +627,7 @@ bool asst::BattleHelper::use_skill(const Point& loc, int timeout_ms)
 {
     LogTraceFunction;
 
-    return click_oper_on_battlefield(loc) && click_skill(timeout_ms) && m_inst_helper.sleep(200);
+    return click_oper_on_battlefield(loc) && click_skill(timeout_ms) && m_inst_helper.sleep(250);
 }
 
 bool asst::BattleHelper::check_pause_button(const cv::Mat& reusable)
