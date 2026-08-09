@@ -490,3 +490,8 @@ CMakeUserPresets.json
 
 # zcode
 /.zcode
+
+
+# ncnn
+*.ncnn.bin
+*.ncnn.param
