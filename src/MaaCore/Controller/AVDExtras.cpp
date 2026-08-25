@@ -47,18 +47,32 @@ void AVDExtras::uninit()
 
 std::optional<cv::Mat> AVDExtras::screencap()
 {
-    if (m_shm == nullptr) {
-        LogError << "AVDExtras m_shm is null";
+    try {
+        if (m_shm == nullptr) {
+            LogError << "AVDExtras m_shm is null";
+            return std::nullopt;
+        }
+
+        VideoInfo* video_info = static_cast<VideoInfo*>(m_shm);
+        uint8_t* frame_data = static_cast<uint8_t*>(m_shm) + sizeof(VideoInfo);
+        cv::Mat bgra(video_info->height, video_info->width, CV_8UC4, frame_data);
+        cv::Mat bgr;
+        cv::cvtColor(bgra, bgr, cv::COLOR_BGRA2BGR);
+
+        return bgr;
+    }
+    catch (const cv::Exception& e) {
+        if (e.code == cv::Error::StsNoMem) {
+            throw;
+        }
+        try {
+            LogError << "AVDExtras screencap OpenCV exception:" << e.what() << VAR(e.code) << VAR(e.file)
+                     << VAR(e.line);
+        }
+        catch (...) {
+        }
         return std::nullopt;
     }
-
-    VideoInfo* video_info = static_cast<VideoInfo*>(m_shm);
-    uint8_t* frame_data = static_cast<uint8_t*>(m_shm) + sizeof(VideoInfo);
-    cv::Mat bgra(video_info->height, video_info->width, CV_8UC4, frame_data);
-    cv::Mat bgr;
-    cv::cvtColor(bgra, bgr, cv::COLOR_BGRA2BGR);
-
-    return bgr;
 }
 
 bool AVDExtras::connect_avd()

@@ -744,7 +744,7 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
             if (m_avd_extras.screencap()) {
                 auto duration = duration_cast<milliseconds>(steady_clock::now() - start_time);
                 if (duration < min_cost) {
-                    m_adb.screencap_method = AdbProperty::ScreencapMethod::AVDExtras;
+                    fastest_method = AdbProperty::ScreencapMethod::AVDExtras;
                     m_inited = true;
                     min_cost = duration;
                 }
@@ -844,15 +844,15 @@ bool asst::AdbController::screencap(cv::Mat& image_payload, bool allow_reconnect
 #ifndef __ANDROID__
         case AdbProperty::ScreencapMethod::AVDExtras: {
             auto img_opt = m_avd_extras.screencap();
-            screencap_ret = img_opt.has_value();
+            screencap_result = img_opt.has_value() ? ScreencapResult::Success : ScreencapResult::Reprobe;
 
-            if (!screencap_ret && allow_reconnect) {
+            if (screencap_result != ScreencapResult::Success && allow_reconnect) {
                 m_avd_extras.reload();
                 img_opt = m_avd_extras.screencap();
-                screencap_ret = img_opt.has_value();
+                screencap_result = img_opt.has_value() ? ScreencapResult::Success : ScreencapResult::Reprobe;
             }
 
-            if (screencap_ret) {
+            if (screencap_result == ScreencapResult::Success) {
                 image_payload = img_opt.value();
             }
         } break;
