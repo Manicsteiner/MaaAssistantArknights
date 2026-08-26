@@ -250,6 +250,15 @@
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
+                        <DataTemplate DataType="{x:Type extra:AVDExtra}">
+                            <StackPanel d:DataContext="{d:DesignInstance {x:Type extra:AVDExtra}}">
+                                <CheckBox
+                                    Margin="10"
+                                    HorizontalAlignment="Center"
+                                    Content="{DynamicResource AVDExtrasEnabled}"
+                                    IsChecked="{Binding Enable}" />
+                            </StackPanel>
+                        </DataTemplate>
                         <DataTemplate DataType="{x:Type extra:Win32Extra}">
                             <StackPanel d:DataContext="{d:DesignInstance {x:Type extra:Win32Extra}}">
                                 <StackPanel
