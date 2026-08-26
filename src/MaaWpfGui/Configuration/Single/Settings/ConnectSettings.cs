@@ -69,6 +69,8 @@ public partial class ConnectSettings : NotifyPropertyChangedWithValue
         [JsonPropertyName("MuMuEmulator12")]
         public Mumu12Extra Mumu12 { get; set; } = new();
 
+        public AVDExtra AVDExtra { get; set; } = new();
+
         public Win32Extra Win32Extra { get; set; } = new();
 
         public Bluestacks BluestacksExtra { get; set; } = new();

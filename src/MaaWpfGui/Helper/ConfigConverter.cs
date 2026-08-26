@@ -836,6 +836,12 @@ public class ConfigConverter
                     ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.LDPlayer = extra;
                 }
                 {
+                    var extra = new AVDExtra{
+                        IsEnabled = ConfigurationHelper.GetValue(ConfigurationKeys.AVDExtrasEnabled, false),
+                    };
+                    ConfigFactory.CurrentConfig.Gui.ConnectSettings.Extras.AVDExtra = extra;
+                }
+                {
                     var extra = new Win32Extra {
                         ScreencapMethod = ConfigurationHelper.GetValue(ConfigurationKeys.AttachWindowScreencapMethod, AsstWin32ScreencapMethod.FramePool),
                         MouseMethod = ConfigurationHelper.GetValue(ConfigurationKeys.AttachWindowMouseMethod, AsstWin32InputMethod.SendMessageWithCursorPos),
