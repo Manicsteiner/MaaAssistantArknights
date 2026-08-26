@@ -79,6 +79,8 @@
             "back_to_home": "[Adb] -s [AdbSerial] shell input keyevent HOME",
             "release": "[Adb] kill-server",
             "pressEsc": "[Adb] -s [AdbSerial] shell input keyevent 111",
+            "emuWebrtcStart": "[Adb] -s [AdbSerial] emu screenrecord webrtc start",
+            "emuWebrtcStop": "[Adb] -s [AdbSerial] emu screenrecord webrtc stop",
             "fps": "[Adb] -s [AdbSerial] shell \"dumpsys SurfaceFlinger --latency | head -n 1\""
         },
         {
