@@ -1,4 +1,4 @@
-## v6.17.1
+## v6.17.2
 
 ### Highlights
 
@@ -44,6 +44,27 @@ The infrast efficiency algorithm has been rewritten; the default mode now suppor
 以下是详细内容：
 
 <details open>
+<summary><b>v6.17.2 (2026-09-06)</b></summary>
+
+### 新增 | New
+
+* 检测到资源文件损坏时，新增尝试下载完整包进行修复 @ABA2396
+
+### 修复 | Fix
+
+* 修复月行水上设定次数代理连战时，刚好在最后一轮结算后弹出的塔罗牌弹窗无人关闭、阻挡后续任务的问题；弹窗改为经 PreStartCheck 等待界面稳定后关闭 ([#18071](https://github.com/MaaAssistantArknights/MaaAssistantArknights/issues/18071)) @ABA2396
+* 修复窗口初始化时点击最大化按钮闪退 ([#12034](https://github.com/MaaAssistantArknights/MaaAssistantArknights/issues/12034)) @ABA2396
+* 恢复 YostarEN/JP/KR 与繁中服的仓库页签模板任务，修复仓库识别失败 @HX3N
+* 修复繁中服仓库辨识，更新材料页签模板 ([#18081](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/18081)) @vonnoq
+* 修正干员名识别替换 埃类斯 -> 埃癸斯 @ABA2396
+
+### 文档 | Docs
+
+* 自动战斗与自动肉鸽的触控模式文档补充 MuMu 触控增强说明 ([#18052](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/18052)) @youzibigg
+
+</details>
+
+<details>
 <summary><b>v6.17.1 (2026-09-04)</b></summary>
 
 ### 新增 | New

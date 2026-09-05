@@ -24,6 +24,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -1019,6 +1020,21 @@ public class Bootstrapper : Bootstrapper<RootViewModel>
     /// </summary>
     public static bool ShouldSkipStartupAutoRun => _skipStartupAutoRun;
 
+    private static bool _isResourceBroken;
+
+    /// <summary>
+    /// Gets a value indicating whether Core resource loading failed this session.
+    /// 置位后所有任务入口（启动自动运行、按钮、热键、托盘、远程）均被拦截，
+    /// 启动完整性检查也不再弹缺失修复窗，修复入口统一由资源损坏弹窗提供。
+    /// </summary>
+    public static bool IsResourceBroken => _isResourceBroken;
+
+    /// <summary>
+    /// 标记 Core 资源加载失败。必须在弹出资源损坏弹窗之前调用，
+    /// 保证弹窗显示期间任务启动已被拦截。
+    /// </summary>
+    public static void MarkResourceBroken() => _isResourceBroken = true;
+
     /// <summary>
     /// 在完整 GUI 尚未初始化前，应用待处理更新后立即重启。
     /// 若当前进程已带 <see cref="SkipStartupAutoRunArg"/>，则原样转发给下一进程。
@@ -1204,6 +1220,15 @@ public class Bootstrapper : Bootstrapper<RootViewModel>
     /// <inheritdoc/>
     protected override void OnUnhandledException(DispatcherUnhandledExceptionEventArgs e)
     {
+        // hc:Window 初始化竞态：SystemCommands.MaximizeWindowCommand.CanExecute 在 HWND
+        // 未就绪时调 Win32 API 抛 ElementNotEnabledException（https://github.com/HandyOrg/HandyControl/issues/1757）。
+        // 属瞬时竞态，静默忽略即可，无需弹窗或写日志。
+        if (e.Exception is ElementNotEnabledException)
+        {
+            e.Handled = true;
+            return;
+        }
+
         LogUnhandledException(e.Exception);
         ShowErrorDialog(e.Exception);
         e.Handled = true;
@@ -1211,10 +1236,12 @@ public class Bootstrapper : Bootstrapper<RootViewModel>
 
     private static void LogUnhandledException(Exception exception)
     {
-        if (_logger != Logger.None)
+        if (_logger == Logger.None)
         {
-            _logger.Fatal(exception, "Unhandled exception occurred");
+            return;
         }
+
+        _logger.Fatal(exception, "Unhandled exception occurred");
     }
 
     private static void ShowErrorDialog(Exception exception)

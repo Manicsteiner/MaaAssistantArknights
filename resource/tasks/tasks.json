@@ -728,7 +728,8 @@
             [".*影丝蛛$", "御龙：影丝蛛"],
             [".*岩甲兽$", "御龙：岩甲兽"],
             [".*雷狼龙$", "御龙：雷狼龙"],
-            ["^折娅$", "折桠"]
+            ["^折娅$", "折桠"],
+            ["埃类斯", "埃癸斯"]
         ]
     },
     "SwitchAccount@StartUpBegin": {
@@ -1340,18 +1341,41 @@
         "specificRect": [930, 230, 140, 40],
         "rectMove": [930, 520, 140, 40]
     },
+    "SR-TarotClose": {
+        "doc": "月行水上代理结算退出后概率弹出的塔罗牌弹窗，拦截点击；结算退出后先于开始行动关闭，此时无需返还次数",
+        "algorithm": "OcrDetect",
+        "text": ["获得了塔罗牌"],
+        "roi": [580, 280, 180, 60],
+        "action": "ClickRect",
+        "specificRect": [1044, 219, 10, 10],
+        "postDelay": 1000,
+        "next": ["StartButton1"]
+    },
+    "SR-TarotClose-AfterStart": {
+        "doc": "弹窗晚于 ClickCorner 轮询弹出、StartButton1 的点击已被拦截时的兜底；返还 StartButton1 次数并重试",
+        "baseTask": "SR-TarotClose",
+        "reduceOtherTimes": ["StartButton1"]
+    },
+    "PreStartCheck": {
+        "doc": "结算退出后可能存在延迟弹出的界面（如月行水上的塔罗牌弹窗），识别到开始行动后等待界面稳定再执行后续",
+        "baseTask": "StartButton1",
+        "action": "DoNothing",
+        "postDelay": 1000,
+        "exceededNext": [],
+        "reduceOtherTimes": [],
+        "next": ["SR-TarotClose", "StartButton1"]
+    },
     "StartButton1": {
         "doc": "绑定插件调整代理倍率",
         "algorithm": "OcrDetect",
         "action": "ClickSelf",
         "text": ["开始行动", "开始作战", "开始推演"],
-        "preDelay": 500,
         "postDelay": 1000,
         "roi": [1010, 625, 260, 61],
         "exceededNext": ["StageSNReturnFlag", "Stop"],
         "reduceOtherTimes": ["(ClickCornerAfterPRTS+ClickCorner)*10", "PrtsStillLoading*100"],
         "next": [
-            "SR-TarotClose",
+            "SR-TarotClose-AfterStart",
             "StartButton2",
             "UseMedicine",
             "UseStone",
@@ -1361,23 +1385,11 @@
             "StartButton1TryAgain"
         ]
     },
-    "SR-TarotClose": {
-        "doc": "月行水上代理结算退出后概率弹出的塔罗牌弹窗，拦截点击；关闭后返还 StartButton1 次数并重试",
-        "algorithm": "OcrDetect",
-        "text": ["获得了塔罗牌"],
-        "roi": [580, 280, 180, 60],
-        "action": "ClickRect",
-        "specificRect": [1044, 219, 10, 10],
-        "reduceOtherTimes": ["StartButton1"],
-        "postDelay": 1000,
-        "next": ["StartButton1"]
-    },
     "StartButton1TryAgain": {
         "baseTask": "StartButton1",
         "action": "ClickRect",
         "exceededNext": [],
         "reduceOtherTimes": [],
-        "preDelay": 0,
         "postDelay_Doc": "理智不足时弹出吃药界面约需两秒，理智足够则不到一秒就能进入StartButton2",
         "postDelay": 3000,
         "specificRect_Doc": "避免第二次点击时点到StartButton2",
@@ -1509,7 +1521,7 @@
         "specificRect": [1000, 20, 270, 50],
         "maxTimes": 10,
         "next": [
-            "StartButton1",
+            "PreStartCheck",
             "StartButton2",
             "UseMedicine",
             "UseStone",

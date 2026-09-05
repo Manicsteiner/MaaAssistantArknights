@@ -1173,6 +1173,22 @@ C:\leidian\LDPlayer9
     <system:String x:Key="MiniGame@SecretFront@Event3">수상한 그림자</system:String>
     <system:String x:Key="MiniGame@SecretFront">비밀 전선</system:String>
     <system:String x:Key="MiniGame@SecretFrontTip">소대 선택 화면에서 시작합니다. 기존 세이브 데이터가 있으면 수동으로 삭제해야 합니다.\n게임 내  ｢이전 소대의 데이터 전승받기｣  옵션을 체크하는 것을 권장합니다.</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis">재료 자동 합성</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesisTip" xml:space="preserve">대상 재료의 가공소 합성 화면에 직접 들어간 뒤 시작하세요.&#10;합성 가능한 하위 재료를 재귀적으로 합성하며, 재료가 부족하면 중지합니다.</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@StartLog">재료 자동 합성 시작</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@MaterialLog">현재 재료: {0}, {1}개 더 필요 ({2}단계)</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@IngredientLog">{0}의 {1}번째 하위 재료 보충</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@IngredientUnavailableLog">{0}의 {1}번째 하위 재료 합성 불가</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@OperatorLog">{0} 합성용 가공소 오퍼레이터 선택</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@CraftLog">{0} × {1} 합성 중</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@ReturnLog">{0} 필요량 충족, 상위 제작법으로 복귀</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@DoneLog">재료 합성 완료</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@FailedLog">재료 합성 중지: {0}</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@InsufficientResources">재료 부족 또는 처리 한도 도달</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@OperatorUnavailable">컨디션이 충분한 가공소 오퍼레이터 없음</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@Unsupported">현재 재료 또는 제작법 데이터 인식 불가</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@NavigationFailed">화면 인식 또는 조작 실패</system:String>
+    <system:String x:Key="MiniGame@MaterialSynthesis@UnknownFailure">알 수 없는 오류</system:String>
     <system:String x:Key="MiniGame@InteractiveExhibition">기상 순회전 - 미수록 기상 찾기</system:String>
     <system:String x:Key="MiniGame@InteractiveExhibitionTip" xml:space="preserve">선택한 맵의 고급 구역 초원 오른쪽 아래에서 작업을 시작합니다.&#10;초원을 왔다 갔다 하며 미수록 생물을 찾고, 발견하면 자동으로 중지됩니다.&#10;생물은 초원에서만 만날 수 있습니다.</system:String>
     <system:String x:Key="MiniGame@InteractiveExhibition@UncollectedNotificationTitle">기상 순회전: 미수록 기상 발견</system:String>
@@ -1366,11 +1382,12 @@ C:\leidian\LDPlayer9
     <!--  AsstProxy  -->
     <system:String x:Key="UpdateApplyFailed">업데이트 적용에 실패하여 현재 설치가 불완전할 수 있습니다. 전체 패키지를 다시 다운로드하고, 아래 안내에 따라 config, data 및 debug를 수동으로 옮겨 주세요.\n\n{key=FullPackageUpgradeTips}</system:String>
     <system:String x:Key="UpdateApplyMissingUpdater">MAA.Updater.exe가 없어 외부 업데이트 프로그램을 시작할 수 없어 업데이트를 계속할 수 없습니다. 이번 업데이트는 취소되었습니다. 이 파일은 수동으로 삭제되었거나 보안 소프트웨어에 의해 차단 또는 삭제되었을 수 있습니다. 보안 소프트웨어가 원인이라면 해당 소프트웨어의 격리소를 확인해 파일을 복원하고, MAA가 있는 폴더를 해당 소프트웨어의 허용 목록에 추가한 뒤 다시 시도해 주세요.\n\n{key=FullPackageUpgradeTips}</system:String>
-    <system:String x:Key="ResourceBroken">리소스 파일이 손상되었습니다. 전체 패키지를 다시 다운로드하세요.\n\n{key=FullPackageUpgradeTips}</system:String>
+    <system:String x:Key="ResourceBroken">리소스 파일이 손상되었습니다. 자동 복구(전체 패키지 다시 다운로드)를 시도하거나, 종료 후 직접 다시 설치하세요.\n\n{key=FullPackageUpgradeTips}</system:String>
     <system:String x:Key="ResourceIntegrityCheckTitle">설치 파일 누락</system:String>
     <system:String x:Key="ResourceIntegrityCheckDesc">설치 파일 {0}개가 누락된 것으로 확인되었습니다({1}). 일부 기능을 사용할 수 없을 수 있습니다. 파일이 보안 소프트웨어에 의해 차단 또는 삭제되었거나, 수동으로 삭제되었을 수 있습니다. 보안 소프트웨어가 원인이라면 해당 소프트웨어의 격리소를 확인해 파일을 복원하고, MAA가 있는 폴더를 해당 소프트웨어의 허용 목록에 추가한 뒤 다시 시도해 주세요.\n\n아래 안내에 따라 수동으로 재설치할 수도 있습니다:\n\n{key=FullPackageUpgradeTips}</system:String>
     <system:String x:Key="ResourceIntegrityRepairYes">자동 복구(전체 패키지를 다운로드하고 재시작 후 복원)</system:String>
     <system:String x:Key="ResourceIntegrityRepairNo">나중에 처리</system:String>
+    <system:String x:Key="ResourceBrokenTaskBlocked">리소스가 손상되어 작업을 시작할 수 없습니다. 시작 시 안내에 따라 리소스를 복구하거나, 전체 패키지를 다시 다운로드한 후 MAA를 재시작하세요.</system:String>
     <system:String x:Key="ResourceIntegrityRepairDownloading">누락된 리소스 파일을 복구하기 위해 전체 패키지를 다운로드하는 중…</system:String>
     <system:String x:Key="ResourceIntegrityRepairFailed">자동 복구에 실패했습니다. 안내에 따라 수동으로 처리해 주세요.\n\n{key=FullPackageUpgradeTips}</system:String>
     <system:String x:Key="ResourceIntegrityRepairCanceled">자동 복구가 취소되었습니다. 누락된 파일은 다음 시작 시 다시 알림이 표시됩니다.</system:String>
