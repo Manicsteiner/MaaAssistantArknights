@@ -966,6 +966,8 @@ C:\leidian\LDPlayer9
     <system:String x:Key="DepotPlanAddTaskFailed">#{0}：添加任务失败</system:String>
     <system:String x:Key="DepotSkipDuringActivity">活动期间跳过</system:String>
     <system:String x:Key="DepotSkipDuringResourceCollection">资源收集限时全天开放期间跳过</system:String>
+    <system:String x:Key="DepotOnlyFirstInsufficientPlan">仅执行第一个库存不足的计划</system:String>
+    <system:String x:Key="DepotOnlyFirstInsufficientPlanTip" xml:space="preserve">仅执行第一个库存不足且当日可执行的计划，日志也只显示到该计划为止。&#10;该计划补满后，下次运行自动继续后续计划，当日不可执行的会被跳过。</system:String>
     <system:String x:Key="DepotPlanSkippedActivity">当前有活动进行中，已跳过库存保持。</system:String>
     <system:String x:Key="DepotPlanSkippedResourceCollection">当前处于资源收集限时全天开放期间，已跳过库存保持。</system:String>
     <system:String x:Key="DepotPlanUpdateDepotFailed">更新库存数据失败。</system:String>

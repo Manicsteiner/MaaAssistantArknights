@@ -967,6 +967,8 @@ Do not adjust the proxy multiplier setting in the game</system:String>
     <system:String x:Key="DepotPlanAddTaskFailed">#{0}: add task failed</system:String>
     <system:String x:Key="DepotSkipDuringActivity">Skip during event</system:String>
     <system:String x:Key="DepotSkipDuringResourceCollection">Skip during resource collection limited-time all-day open</system:String>
+    <system:String x:Key="DepotOnlyFirstInsufficientPlan">Only execute the first insufficient plan</system:String>
+    <system:String x:Key="DepotOnlyFirstInsufficientPlanTip" xml:space="preserve">Only the first insufficient plan that is open today will be queued.&#10;The log stops there; plans after it are not evaluated this run.&#10;Once it is stocked up, the next run continues with the rest.</system:String>
     <system:String x:Key="DepotPlanSkippedActivity">An event is in progress, depot maintain skipped.</system:String>
     <system:String x:Key="DepotPlanSkippedResourceCollection">Resource collection limited-time all-day open is in progress, depot maintain skipped.</system:String>
     <system:String x:Key="DepotPlanUpdateDepotFailed">Failed to update inventory data.</system:String>
