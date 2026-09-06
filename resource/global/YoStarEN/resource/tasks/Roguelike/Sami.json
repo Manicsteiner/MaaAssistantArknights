@@ -224,8 +224,8 @@
             [".*Frost.*", "_exit"],
             [".*rostbou.*", "_exit"],
             [".*Ge?l?i?d? ?Rockshe.*", "_exit"],
-            [".*Immaculate.*", "_default"],
-            [".*Garde.*", "_default"],
+            [".*Immaculate.*", "_exit"],
+            [".*Garde.*", "_exit"],
             [".*Clairvoyant ?Carcass", "_exit"],
             [".*Sec.?uded ?Passag.*", "_exit"]
         ]
@@ -241,8 +241,8 @@
             [".*Frost.*", "_exit"],
             [".*rostbou.*", "_exit"],
             [".*Ge?l?i?d? ?Rockshe.*", "_exit"],
-            [".*Immaculate.*", "_default"],
-            [".*Garde.*", "_default"],
+            [".*Immaculate.*", "_exit"],
+            [".*Garde.*", "_exit"],
             [".*Clairvoyant ?Carcass", "_exit"],
             [".*Sec.?uded ?Passag.*", "_exit"]
         ]
@@ -258,8 +258,8 @@
             [".*Frost.*", "_SKIP_"],
             [".*rostbou.*", "_SKIP_"],
             [".*Ge?l?i?d? ?Rockshe.*", "_SKIP_"],
-            [".*Immaculate.*", "_default"],
-            [".*Garde.*", "_default"],
+            [".*Immaculate.*", "_SKIP_"],
+            [".*Garde.*", "_SKIP_"],
             [".*Clairvoyant ?Carcass", "_SKIP_"],
             [".*Sec.?uded ?Passag.*", "_SKIP_"]
         ]
