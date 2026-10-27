@@ -758,6 +758,8 @@ MAA を新しい独立したフォルダーに解凍するか、MAA に属さな
     <system:String x:Key="Common.Tip">ヒント</system:String>
     <system:String x:Key="Common.Warning">警告</system:String>
     <system:String x:Key="Common.Yes">はい</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasEnabled">AVD のスクリーンショット拡張モードを有効にする</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasNotEnabledMessage">AVD スクリーンショットの強化 が有効になっていません。関連する設定を確認してください</system:String>
     <system:String x:Key="Connection.AccountSwitch">アカウントの切り替え</system:String>
     <system:String x:Key="Connection.AccountSwitch.ManualRun">今すぐ切り替える</system:String>
     <system:String x:Key="Connection.AccountSwitch.Tip" xml:space="preserve">切り替える必要があるアカウントを入力し、空白のままにしてアカウントの切り替えを停止します。
