@@ -758,6 +758,8 @@ MAA를 독립된 새 폴더에 압축 해제하거나, MAA에 속하지 않는 D
     <system:String x:Key="Common.Tip">도움말</system:String>
     <system:String x:Key="Common.Warning">경고</system:String>
     <system:String x:Key="Common.Yes">네</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasEnabled">AVD 스크린샷 강화 기능 활성화</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasNotEnabledMessage">AVD 스크린샷 강화 기능이 활성화되지 않았습니다. 관련 설정을 확인하세요</system:String>
     <system:String x:Key="Connection.AccountSwitch">계정 전환</system:String>
     <system:String x:Key="Connection.AccountSwitch.ManualRun">수동 스위치</system:String>
     <system:String x:Key="Connection.AccountSwitch.Tip" xml:space="preserve">전환할 계정을 입력하고, 계정 전환을 비활성화하려면 공백으로 남겨두세요.
