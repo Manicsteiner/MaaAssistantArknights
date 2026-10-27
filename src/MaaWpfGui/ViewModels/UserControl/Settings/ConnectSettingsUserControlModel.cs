@@ -263,6 +263,7 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
         ConnectConfig.MuMuEmulator12 => _extras.Mumu12,
         ConnectConfig.PC => _extras.Win32,
         ConnectConfig.ModAVD => _extras.ModAvd,
+        ConnectConfig.AVD => _extras.AVDExtra,
         _ => null,
     };
 
@@ -273,6 +274,8 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
         public LDPlayerExtra LdPlayer { get; set; } = new();
 
         public MuMu12Extra Mumu12 { get; set; } = new();
+
+        public AVDExtra AVDExtra { get; set; } = new();
 
         public Models.EmulatorConnectionExtra.Win32Extra Win32 { get; set; } = new();
 
@@ -722,6 +725,15 @@ public class ConnectSettingsUserControlModel : PropertyChangedBase
                 if (ExtraConfig is ModAvdExtra { RootPath: not "" } && ScreencapMethod != "ModAvdExtras")
                 {
                     TestLinkInfo = $"{LocalizationHelper.GetString("Connection.ModAVD.ExtrasNotEnabledMessage")}\n{ScreencapTestCost}";
+                    return;
+                }
+
+                break;
+
+            case ConnectConfig.AVD:
+                if (ExtraConfig is AVDExtra avdExtra && avdExtra.Enable && ScreencapMethod != "AVDExtras")
+                {
+                    TestLinkInfo = $"{LocalizationHelper.GetString("Connection.AVD.ExtrasNotEnabledMessage")}\n{ScreencapTestCost}";
                     return;
                 }
 
