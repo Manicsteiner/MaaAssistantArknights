@@ -756,6 +756,8 @@
     <system:String x:Key="Common.Tip">提示</system:String>
     <system:String x:Key="Common.Warning">警告</system:String>
     <system:String x:Key="Common.Yes">是</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasEnabled">啟用 AVD 截圖增強模式</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasNotEnabledMessage">AVD 截圖增強未生效，請檢查相關設定</system:String>
     <system:String x:Key="Connection.AccountSwitch">帳號切換</system:String>
     <system:String x:Key="Connection.AccountSwitch.ManualRun">立即切換</system:String>
     <system:String x:Key="Connection.AccountSwitch.Tip" xml:space="preserve">需要切換到的帳號，留空以停用。
