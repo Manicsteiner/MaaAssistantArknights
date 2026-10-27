@@ -758,6 +758,8 @@ Click "{key=Common.Confirm}" to attempt installing/updating VC++ runtime and exi
     <system:String x:Key="Common.Tip">Tip</system:String>
     <system:String x:Key="Common.Warning">Warning</system:String>
     <system:String x:Key="Common.Yes">Yes</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasEnabled">Enable AVD's screenshot enhancement mode</system:String>
+    <system:String x:Key="Connection.AVD.ExtrasNotEnabledMessage">AVD screenshot enhancement not enabled, please check related settings</system:String>
     <system:String x:Key="Connection.AccountSwitch">Account Switch</system:String>
     <system:String x:Key="Connection.AccountSwitch.ManualRun">Switch now</system:String>
     <system:String x:Key="Connection.AccountSwitch.Tip" xml:space="preserve">Fill in the account that needs to be switched to, leave blank to close the account switching.
