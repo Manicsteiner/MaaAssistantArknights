@@ -161,6 +161,7 @@ class Asst:
         else:
             return None
 
+    @staticmethod
     def set_connection_extras(name: str, extras: JSON):
         """
         连接模拟器端的Extras
