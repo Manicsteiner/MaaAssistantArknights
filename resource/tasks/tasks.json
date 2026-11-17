@@ -4785,7 +4785,7 @@
     },
     "BattleUseOper": {
         "algorithm": "JustReturn",
-        "preDelay": 150,
+        "preDelay": 300,
         "postDelay": 200,
         "Doc": "pre 是从点击干员，到干员信息弹出来等待的时间；post 是干员上场，到设置朝向之间等待的时间"
     },
